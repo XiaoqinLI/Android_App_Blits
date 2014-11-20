@@ -34,17 +34,6 @@
 	    android:layout_weight="4" >
 
 	    <ImageView
-	        android:id="@+id/option4_img"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/option1_img"
-	        android:layout_marginLeft="20dp"
-	        android:layout_marginTop="28dp"
-	        android:layout_toRightOf="@+id/option1_img"
-	        android:contentDescription="@string/other"
-	        android:src="@drawable/other" />
-
-	    <ImageView
 	        android:id="@+id/option3_img"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -63,14 +52,32 @@
 	        android:src="@drawable/dinnerplate" />
 
 	    <ImageView
+	        android:id="@+id/option4_img"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/option1_img"
+	        android:layout_marginTop="22dp"
+	        android:layout_toRightOf="@+id/option5_img"
+	        android:contentDescription="@string/other"
+	        android:src="@drawable/other" />
+
+	    <ImageView
 	        android:id="@+id/option1_img"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_marginLeft="41dp"
-	        android:layout_marginTop="85dp"
 	        android:layout_centerVertical="true"
+	        android:layout_toLeftOf="@+id/option5_img"
 	        android:contentDescription="@string/popcorn"
 	        android:src="@drawable/popcorn" />
+
+	    <ImageView
+	        android:id="@+id/option5_img"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/option2_img"
+	        android:layout_centerHorizontal="true"
+	        android:contentDescription="@string/alignment_dot"
+	        android:src="@drawable/alignment_dot" />
 
 	</RelativeLayout>
 

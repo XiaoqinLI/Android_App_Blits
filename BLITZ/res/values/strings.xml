@@ -8,6 +8,7 @@
     <string name="other">Other</string>  
     <string name="beer">Beer</string>    
     <string name="dinnerplate">Dinnerplate</string>
+    <string name="alignment_dot">Alignment Dot</string>   
     <string name="action_settings">Settings</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
