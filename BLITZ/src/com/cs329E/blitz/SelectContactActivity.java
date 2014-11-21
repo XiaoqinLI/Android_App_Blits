@@ -33,6 +33,8 @@ public class SelectContactActivity extends Activity {
 		else if (eventName.equals("OTHER")){
 			layout.setBackgroundResource(R.drawable.blitzbg_events);
 		}
+		
+		
 			
 				
 	}
