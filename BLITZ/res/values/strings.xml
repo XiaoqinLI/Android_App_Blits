@@ -5,10 +5,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="send">SEND A</string>
     <string name="popcorn">Popcorn</string>
-    <string name="other">Other</string>  
-    <string name="beer">Beer</string>    
+    <string name="other">Other</string>
+    <string name="beer">Beer</string>
     <string name="dinnerplate">Dinnerplate</string>
-    <string name="alignment_dot">Alignment Dot</string>   
+    <string name="alignment_dot">Alignment Dot</string>
+    <string name="blitz_who">Who do you want to Blitz?</string>   
     <string name="action_settings">Settings</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
@@ -21,7 +22,9 @@
     <string name="toast_string">Invalid username or password</string>
     <string name="logout">Log out</string>
     <string name="profile_pic">Profile Picture</string>
+    
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_blitz_selection">BlitzSelectionActivity</string>
+    <string name="title_activity_select_contact">SelectContactActivity</string>
 
 </resources>

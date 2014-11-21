@@ -1,6 +1,7 @@
 package com.cs329E.blitz;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -8,18 +9,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-public class BlitzSelectionActivity extends Activity {
+public class SelectEventActivity extends Activity {
 	
 	private static final String TAG = "Select Event Activity";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_blitz_selection);
+		setContentView(R.layout.activity_select_event);
 		
 		ImageView movieView = (ImageView) findViewById(R.id.option1_img);
 		ImageView restaurantView = (ImageView) findViewById(R.id.option2_img);
-		ImageView beerView = (ImageView) findViewById(R.id.option3_img);
+		ImageView barView = (ImageView) findViewById(R.id.option3_img);
 		ImageView otherView = (ImageView) findViewById(R.id.option4_img);
 		
 		movieView.setOnClickListener(new View.OnClickListener() {
@@ -42,13 +43,13 @@ public class BlitzSelectionActivity extends Activity {
 			}
 		});
 		
-		beerView.setOnClickListener(new View.OnClickListener() {
+		barView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.v(TAG, "User pressed the drink button");
-//				Intent restaurantIntent = new Intent(BlitzSelectionActivity.this, RegisterActivity.class);
-//				startActivity(restaurantIntent);
+				Log.v(TAG, "User pressed the bar button");
+				Intent barIntent = new Intent(SelectEventActivity.this, SelectContactActivity.class);
+				startActivity(barIntent);
 			}
 		});
 		

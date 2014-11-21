@@ -27,8 +27,12 @@
             android:label="@string/title_activity_register" >
         </activity>
         <activity
-            android:name=".BlitzSelectionActivity"
+            android:name=".SelectEventActivity"
             android:label="@string/title_activity_blitz_selection" >
+        </activity>
+        <activity
+            android:name=".SelectContactActivity"
+            android:label="@string/title_activity_select_contact" >
         </activity>
     </application>
 
