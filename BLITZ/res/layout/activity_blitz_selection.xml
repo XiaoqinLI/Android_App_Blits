@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:weightSum="5"
+    android:weightSum="6"
     tools:context="com.cs329E.blitz.BlitzSelectionActivity" >
 	
     <RelativeLayout
@@ -28,57 +28,56 @@
 	        android:textStyle="bold" />
 	</RelativeLayout>
 
-	<RelativeLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="0dp"
-	    android:layout_weight="4" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4.5" >
 
-	    <ImageView
-	        android:id="@+id/option3_img"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignLeft="@+id/option1_img"
-	        android:layout_alignTop="@+id/option4_img"
-	        android:contentDescription="@string/beer"
-	        android:src="@drawable/beer" />
+        <ImageView
+            android:id="@+id/option3_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/option1_img"
+            android:layout_alignTop="@+id/option4_img"
+            android:contentDescription="@string/beer"
+            android:src="@drawable/beer" />
 
-	    <ImageView
-	        android:id="@+id/option2_img"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_above="@+id/option4_img"
-	        android:layout_alignLeft="@+id/option4_img"
-	        android:contentDescription="@string/dinnerplate"
-	        android:src="@drawable/dinnerplate" />
+        <ImageView
+            android:id="@+id/option2_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/option4_img"
+            android:layout_alignLeft="@+id/option4_img"
+            android:contentDescription="@string/dinnerplate"
+            android:src="@drawable/dinnerplate" />
 
-	    <ImageView
-	        android:id="@+id/option4_img"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/option1_img"
-	        android:layout_marginTop="22dp"
-	        android:layout_toRightOf="@+id/option5_img"
-	        android:contentDescription="@string/other"
-	        android:src="@drawable/other" />
+        <ImageView
+            android:id="@+id/option4_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/option1_img"
+            android:layout_marginTop="22dp"
+            android:layout_toRightOf="@+id/option5_img"
+            android:contentDescription="@string/other"
+            android:src="@drawable/other" />
 
-	    <ImageView
-	        android:id="@+id/option1_img"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_centerVertical="true"
-	        android:layout_toLeftOf="@+id/option5_img"
-	        android:contentDescription="@string/popcorn"
-	        android:src="@drawable/popcorn" />
+        <ImageView
+            android:id="@+id/option1_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/option5_img"
+            android:contentDescription="@string/popcorn"
+            android:src="@drawable/popcorn" />
 
-	    <ImageView
-	        android:id="@+id/option5_img"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/option2_img"
-	        android:layout_centerHorizontal="true"
-	        android:contentDescription="@string/alignment_dot"
-	        android:src="@drawable/alignment_dot" />
-
-	</RelativeLayout>
+        <ImageView
+            android:id="@+id/option5_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/option2_img"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/alignment_dot"
+            android:src="@drawable/alignment_dot" />
+    </RelativeLayout>
 
 </LinearLayout>
