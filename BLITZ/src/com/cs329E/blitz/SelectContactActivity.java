@@ -1,21 +1,42 @@
 package com.cs329E.blitz;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 public class SelectContactActivity extends Activity {
-
+	
+	private static final String TAG = "Select Contact Activity";	
+	private LinearLayout layout;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_contact);
-		LinearLayout layout =(LinearLayout)findViewById(R.id.select_contact_activity_bg);
-		layout.setBackgroundResource(R.drawable.blitzbg_bars);
+		
+		layout =(LinearLayout)findViewById(R.id.select_contact_activity_bg);
+		Intent intent = getIntent();
+		String eventName = intent.getStringExtra("EXTRA_EVENT_NAME");
+		if (eventName.equals("BAR")){
+			layout.setBackgroundResource(R.drawable.blitzbg_bars);
+		}
+		else if (eventName.equals("RESTAURANT")){
+			layout.setBackgroundResource(R.drawable.blitzbg_restaurants);
+		}
+		else if (eventName.equals("MOVIE")){
+			layout.setBackgroundResource(R.drawable.blitzbg_movies);
+		}
+		else if (eventName.equals("OTHER")){
+			layout.setBackgroundResource(R.drawable.blitzbg_events);
+		}
+			
+				
 	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

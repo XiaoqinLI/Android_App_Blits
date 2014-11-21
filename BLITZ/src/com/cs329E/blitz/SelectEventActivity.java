@@ -23,23 +23,25 @@ public class SelectEventActivity extends Activity {
 		ImageView barView = (ImageView) findViewById(R.id.option3_img);
 		ImageView otherView = (ImageView) findViewById(R.id.option4_img);
 		
-		movieView.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Log.v(TAG, "User pressed the movie button");
-//				Intent restaurantIntent = new Intent(BlitzSelectionActivity.this, RegisterActivity.class);
-//				startActivity(restaurantIntent);
-			}
-		});
-		
 		restaurantView.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				Log.v(TAG, "User pressed the movie button");
+				Intent restaurantIntent = new Intent(getBaseContext(), SelectContactActivity.class);
+				restaurantIntent.putExtra("EXTRA_EVENT_NAME", "RESTAURANT");
+				startActivity(restaurantIntent);
+			}
+		});
+		
+		movieView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
 				Log.v(TAG, "User pressed the restaurant button");
-//				Intent restaurantIntent = new Intent(BlitzSelectionActivity.this, RegisterActivity.class);
-//				startActivity(restaurantIntent);
+				Intent movieIntent = new Intent(getBaseContext(), SelectContactActivity.class);
+				movieIntent.putExtra("EXTRA_EVENT_NAME", "MOVIE");
+				startActivity(movieIntent);
 			}
 		});
 		
@@ -48,7 +50,8 @@ public class SelectEventActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Log.v(TAG, "User pressed the bar button");
-				Intent barIntent = new Intent(SelectEventActivity.this, SelectContactActivity.class);
+				Intent barIntent = new Intent(getBaseContext(), SelectContactActivity.class);
+				barIntent.putExtra("EXTRA_EVENT_NAME", "BAR");
 				startActivity(barIntent);
 			}
 		});
@@ -58,12 +61,12 @@ public class SelectEventActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Log.v(TAG, "User pressed the other button");
-//				Intent restaurantIntent = new Intent(BlitzSelectionActivity.this, RegisterActivity.class);
-//				startActivity(restaurantIntent);
+				Intent otherIntent = new Intent(getBaseContext(), SelectContactActivity.class);
+				otherIntent.putExtra("EXTRA_EVENT_NAME", "OTHER");
+				startActivity(otherIntent);
 			}
 		});
-		
-		
+			
 	}
 	
 	@Override
