@@ -2,15 +2,23 @@ package com.cs329E.blitz;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class SelectContactActivity extends Activity {
 	
 	private static final String TAG = "Select Contact Activity";	
+	private static final int PICK_CONTACT = 2;
 	private LinearLayout layout;
 	
 	@Override
@@ -35,8 +43,32 @@ public class SelectContactActivity extends Activity {
 		}
 		
 		
-			
-				
+		final Button addFromContactButton = (Button) findViewById(R.id.contactbutton);		
+		addFromContactButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {				
+				Log.v(TAG, "User pressed the add from contact button");
+				Intent addFromContactIntent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+				startActivityForResult(addFromContactIntent, PICK_CONTACT);			
+			}
+		});				
+	}
+	
+	@Override
+	public void onActivityResult(int reqCode, int resultCode, Intent data) {
+	  super.onActivityResult(reqCode, resultCode, data);
+	  switch (reqCode) {
+	    case (PICK_CONTACT) :
+	      if (resultCode == Activity.RESULT_OK) {
+	        Uri contactData = data.getData();
+	        Cursor c =  getContentResolver().query(contactData, null, null, null, null);
+	        if (c.moveToFirst()) {
+	          String name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+	          // TODO Whatever you want to do with the selected contact name.
+	          
+	        }
+	      }
+	      break;
+	  }
 	}
 	
 
