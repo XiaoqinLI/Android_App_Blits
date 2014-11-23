@@ -29,75 +29,65 @@
 	
     
     <ScrollView 
-    android:id="@+id/ScrollContactList"
-    android:layout_width="match_parent"
-    android:layout_height="0dp" 
-    android:layout_weight="3.5" >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/select_contact_checkboxes"
-	    android:layout_marginTop="10dp">
-	    <!--  android:background="#FFFFFF"-->
-	       
-        <CheckBox
-            android:id="@+id/adamcheckbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"       
-	        android:layout_alignParentTop="true"
-            android:button="@null"
-            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-            android:drawablePadding="152dp"
-	        android:layout_centerHorizontal="true"
-            android:text="Adam"
-            android:textSize="24sp" />
-
-        <CheckBox
-            android:id="@+id/michaelcheckbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/adamcheckbox"
-            android:layout_below="@+id/adamcheckbox"
-            android:button="@null"
-            android:drawablePadding="132dp"
-            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-	        android:layout_centerHorizontal="true"
-            android:text="Michael"
-            android:textSize="24sp" />
-
-        <CheckBox
-            android:id="@+id/jackcheckbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/michaelcheckbox"
-            android:layout_below="@+id/michaelcheckbox"
-            android:button="@null"
-            android:drawablePadding="167dp"
-            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-            android:text="Jack"
-            android:textSize="24sp" />
-
-        <CheckBox
-            android:id="@+id/johncheckbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/jackcheckbox"
-            android:layout_below="@+id/jackcheckbox"
-            android:button="@null"
-            android:drawablePadding="167dp"
-            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-            android:text="John"
-            android:textSize="24sp" />
-        
-	</RelativeLayout>
+	    android:id="@+id/ScrollContactList"
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp" 
+	    android:layout_weight="3.5" >
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="0dp"
+	        android:id="@+id/select_contact_checkboxes"
+	        android:orientation="vertical"
+	        android:gravity="center_horizontal"
+		    android:layout_marginTop="10dp">
+		    <!--  android:background="#FFFFFF"-->
+	
+	        <CheckBox
+	            android:id="@+id/adamcheckbox"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:button="@null"
+	            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+	            android:text="Adam"
+	            android:textSize="24sp" />
+	
+	        <CheckBox
+	            android:id="@+id/michaelcheckbox"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:button="@null"
+	            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+	            android:text="Michael"
+	            android:textSize="24sp" />
+	
+	        <CheckBox
+	            android:id="@+id/jackcheckbox"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:button="@null"
+	            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+	            android:text="Jack"
+	            android:textSize="24sp" />
+	
+	        <CheckBox
+	            android:id="@+id/johncheckbox"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:button="@null"
+	            android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+	            android:text="John"
+	            android:textSize="24sp" />
+	        
+		</LinearLayout>	
 	</ScrollView>
+	
     <RelativeLayout
         android:layout_width="match_parent"
 	    android:layout_height="0dp"
 	    android:layout_weight="1.5" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -109,10 +99,19 @@
             android:id="@+id/contactbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            android:text="Contact" />
+
+        <Button
+            android:id="@+id/facebookbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="73dp"
-            android:text="Add from Contact" />
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="30dp"          
+            android:text="Facebook" />
       
 	</RelativeLayout>
 
