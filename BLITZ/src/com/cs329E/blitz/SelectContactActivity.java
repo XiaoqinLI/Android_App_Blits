@@ -26,6 +26,7 @@ public class SelectContactActivity extends Activity {
 	private static final int PICK_CONTACT = 2;
 	private LinearLayout layout;
 	private LinearLayout contactlayout;
+	private String eventName;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class SelectContactActivity extends Activity {
 		
 		layout =(LinearLayout)findViewById(R.id.select_contact_activity_bg);
 		Intent intent = getIntent();
-		String eventName = intent.getStringExtra("EXTRA_EVENT_NAME");
+		eventName = intent.getStringExtra("EXTRA_EVENT_NAME");
 		if (eventName.equals("BAR")){
 			layout.setBackgroundResource(R.drawable.blitzbg_bars);
 		}
@@ -58,7 +59,29 @@ public class SelectContactActivity extends Activity {
 				Intent addFromContactIntent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
 				startActivityForResult(addFromContactIntent, PICK_CONTACT);			
 			}
-		});				
+		});	
+		
+		final Button addFromFaceButton = (Button) findViewById(R.id.facebookbutton);		
+		addFromFaceButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {				
+				Log.v(TAG, "User pressed the add from facebook button");
+				
+			}
+		});	
+		
+		final Button nextButton = (Button) findViewById(R.id.next);		
+
+		nextButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Log.v(TAG, "User pressed the restaurant button");
+				Intent nextIntent = new Intent(getBaseContext(), SelectLocationActivity.class);
+				nextIntent.putExtra("EXTRA_EVENT_NAME", eventName);
+				startActivity(nextIntent);
+			}
+		});
+		
 	}
 	
 	@Override
@@ -76,6 +99,7 @@ public class SelectContactActivity extends Activity {
 	          checkbox = (CheckBox)((LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.right_check_box,null);
 	          checkbox.setText(name);
 	          checkbox.setTextColor(Color.BLACK);
+	          checkbox.setChecked(true);
 	          
 	          LinearLayout.LayoutParams checkbox_relativeParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 	          contactlayout.addView(checkbox, checkbox_relativeParams);
