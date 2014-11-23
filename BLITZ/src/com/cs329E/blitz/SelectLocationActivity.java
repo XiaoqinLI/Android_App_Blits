@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class SelectLocationActivity extends ListActivity {
+	private static final String TAG = "Select Location Activity";
 	private LinearLayout layout;
 	private String eventName;
 	private LinearLayout myGallery;
@@ -61,13 +63,15 @@ public class SelectLocationActivity extends ListActivity {
 		adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_2)));
 		adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_3)));
 		adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_4)));
+		adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_6)));
 
 		FriendFavouritesListView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Log.v("TAG", "Hit on a figure, doing nothing");
-				Toast.makeText(SelectLocationActivity.this, "" + position,
-						Toast.LENGTH_SHORT).show();
+				Log.v(TAG, "Hit on a favourite place, go to set time");
+				Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
+				selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
+				startActivity(selectLocationIntent);					
 			}
 		});
 
@@ -87,12 +91,8 @@ public class SelectLocationActivity extends ListActivity {
 						Toast.LENGTH_SHORT).show();
 			}
 		});
-		*/
-			
+		*/			
 	}
-	
-	
-
 	
 	// The Adapter class used with the Gallery
 		public class ImageAdapter extends BaseAdapter {

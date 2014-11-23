@@ -10,8 +10,14 @@
     <string name="dinnerplate">Dinnerplate</string>
     <string name="alignment_dot">Alignment Dot</string>
     <string name="blitz_who">Who do you want to Blitz?</string>
-    <string name="blitz_where">where do you want to go?</string>    
-    <string name="searching">&#160;search nearby</string>    
+    <string name="blitz_where">where do you want to go?</string>
+    <string name="blitz_when">when do you want to go?</string>
+    <string name="searching">&#160;search nearby</string>
+    <string name="your_friend_like">Your friends like...</string>
+    <string name="time_between">Between</string>
+    <string name="time_and">and</string>
+        
+    
     <string name="action_settings">Settings</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
@@ -28,5 +34,6 @@
     <string name="title_activity_blitz_selection">BlitzSelectionActivity</string>
     <string name="title_activity_select_contact">SelectContactActivity</string>
     <string name="title_activity_select_location">SelectLocationActivity</string>
+    <string name="title_activity_finalize_time">FinalizeTimeActivity</string>
 
 </resources>

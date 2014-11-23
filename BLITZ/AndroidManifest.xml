@@ -40,6 +40,10 @@
             android:name=".SelectLocationActivity"
             android:label="@string/title_activity_select_location" >
         </activity>
+        <activity
+            android:name=".FinalizeTimeActivity"
+            android:label="@string/title_activity_finalize_time" >
+        </activity>
     </application>
 
 </manifest>
