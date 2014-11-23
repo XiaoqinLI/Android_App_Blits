@@ -27,7 +27,7 @@ public class SelectEventActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.v(TAG, "User pressed the movie button");
+				Log.v(TAG, "User pressed the restaurant button");
 				Intent restaurantIntent = new Intent(getBaseContext(), SelectContactActivity.class);
 				restaurantIntent.putExtra("EXTRA_EVENT_NAME", "RESTAURANT");
 				startActivity(restaurantIntent);
@@ -38,7 +38,7 @@ public class SelectEventActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.v(TAG, "User pressed the restaurant button");
+				Log.v(TAG, "User pressed the movie button");
 				Intent movieIntent = new Intent(getBaseContext(), SelectContactActivity.class);
 				movieIntent.putExtra("EXTRA_EVENT_NAME", "MOVIE");
 				startActivity(movieIntent);

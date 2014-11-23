@@ -75,7 +75,7 @@ public class SelectContactActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.v(TAG, "User pressed the restaurant button");
+				Log.v(TAG, "User pressed the next button");
 				Intent nextIntent = new Intent(getBaseContext(), SelectLocationActivity.class);
 				nextIntent.putExtra("EXTRA_EVENT_NAME", eventName);
 				startActivity(nextIntent);
@@ -108,7 +108,6 @@ public class SelectContactActivity extends Activity {
 	      break;
 	  }
 	}
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

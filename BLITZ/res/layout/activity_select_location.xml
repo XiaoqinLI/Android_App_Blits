@@ -64,9 +64,40 @@
         android:id="@+id/select_location_placeholder"  
         android:layout_width="match_parent"
 	    android:layout_height="0dp"
-	    android:layout_weight="1" >	
+	    android:layout_weight="0.5" >	
 	</RelativeLayout>
 	
-    
+    <RelativeLayout
+        android:id="@+id/friend_gallery_layout"
+        android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="3" >
+	    
+        <ListView
+	        android:id="@android:id/list"
+	        android:layout_width="300dp"
+	        android:layout_height="wrap_content" 
+	        android:layout_centerHorizontal="true" >
+		</ListView>
+		
+        <!--  
+        <HorizontalScrollView
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+	        <LinearLayout
+	            android:id="@+id/mygallery"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal"
+	            />
+    	</HorizontalScrollView>
+	    -->
+	    <!--
+	    <Gallery
+		    android:id="@+id/gallery"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content" />
+		-->
+    </RelativeLayout>
 
 </LinearLayout>
