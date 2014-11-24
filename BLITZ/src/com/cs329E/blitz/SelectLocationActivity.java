@@ -3,43 +3,60 @@ package com.cs329E.blitz;
 
 import java.util.ArrayList;
 
+import org.lucasr.twowayview.TwoWayView;
+
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Gallery;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class SelectLocationActivity extends ListActivity {
+public class SelectLocationActivity extends Activity {
 	private static final String TAG = "Select Location Activity";
 	private LinearLayout layout;
 	private String eventName;
 	private LinearLayout myGallery;
-	private static ArrayList<FriendFavourites> arrayOfPlayers = new ArrayList<FriendFavourites>();
+	private int[] ids = {R.id.favourite1, R.id.favourite2, R.id.favourite3, R.id.favourite4, R.id.favourite5};
 
-	
+	//	private static ArrayList<FriendFavourites> arrayOfPlayers = new ArrayList<FriendFavourites>();
+	//	private ArrayList<Bitmap> items = new ArrayList<Bitmap>();
+	private ArrayList<Drawable> items = new ArrayList<Drawable>();
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_select_location);
-		
-		layout =(LinearLayout)findViewById(R.id.select_location_activity_bg);
 		Intent intent = getIntent();
 		eventName = intent.getStringExtra("EXTRA_EVENT_NAME");
+
+		if (eventName.equals("RESTAURANT")){
+			setContentView(R.layout.activity_select_location);
+		}
+		else{
+			setContentView(R.layout.activity_select_location_no_horizatalview);
+		}
+
+		layout =(LinearLayout)findViewById(R.id.select_location_activity_bg);	
 		if (eventName.equals("BAR")){
 			layout.setBackgroundResource(R.drawable.blitzbg_bars);
 		}
@@ -53,102 +70,139 @@ public class SelectLocationActivity extends ListActivity {
 			layout.setBackgroundResource(R.drawable.blitzbg_events);
 		}
 		
-		// Create the adapter to convert the array to views
-		FriendFavouritesAdapter adapter = new FriendFavouritesAdapter(this, arrayOfPlayers);
-		// Attach the adapter to a ListView
-		ListView FriendFavouritesListView = getListView();
-		FriendFavouritesListView.setAdapter(adapter);
-		adapter.clear();
-		adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_1)));
-		adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_2)));
-		adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_3)));
-		adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_4)));
-		adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_6)));
+		if (eventName.equals("RESTAURANT")){
+			// HorizontalScrollView: dumb method
+			ImageView image1 = (ImageView) findViewById(R.id.favourite1);
+			ImageView image2 = (ImageView) findViewById(R.id.favourite2);
+			ImageView image3 = (ImageView) findViewById(R.id.favourite3);
+			ImageView image4 = (ImageView) findViewById(R.id.favourite4);
+			ImageView image5 = (ImageView) findViewById(R.id.favourite5);
 
-		FriendFavouritesListView.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				Log.v(TAG, "Hit on a favourite place, go to set time");
-				Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
-				selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
-				startActivity(selectLocationIntent);					
-			}
-		});
-
-
-		/*
-		Gallery g = (Gallery) findViewById(R.id.gallery);
-
-		// Create a new ImageAdapter and set in as the Adapter for the Gallery
-		g.setAdapter(new ImageAdapter(this));
-
-		// Set an setOnItemClickListener on the Gallery
-		g.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View v,
-					int position, long id) {
-				// Display a Toast message indicate the selected item
-				Toast.makeText(SelectLocationActivity.this, "" + position,
-						Toast.LENGTH_SHORT).show();
-			}
-		});
-		*/			
-	}
-	
-	// The Adapter class used with the Gallery
-		public class ImageAdapter extends BaseAdapter {
-
-			private static final int IMAGE_DIM = 800;
-
-			private int mGalleryItemBackground;
-			private Context mContext;
-
-			// List of IDs corresponding to the images
-			private Integer[] mImageIds = { R.drawable.sample_1,
-					R.drawable.sample_2, R.drawable.sample_3, R.drawable.sample_4,
-					R.drawable.sample_5, R.drawable.sample_6, R.drawable.sample_7 };
-
-			public ImageAdapter(Context c) {
-				mContext = c;
-				TypedArray a = obtainStyledAttributes(R.styleable.SelectLocationActivity);
-				mGalleryItemBackground = a.getResourceId(
-						R.styleable.SelectLocationActivity_android_galleryItemBackground,
-						0);
-				a.recycle();
-			}
-
-			public int getCount() {
-				return mImageIds.length;
-			}
-
-			public Object getItem(int position) {
-				return mImageIds[position];
-			}
-
-			public long getItemId(int position) {
-				return position;
-			}
-
-			public View getView(int position, View convertView, ViewGroup parent) {
-
-				ImageView imageView = (ImageView) convertView;
-
-				// If convertView is not recycled set it up now
-				if (null == imageView) {
-					imageView = new ImageView(mContext);
-
-					imageView.setLayoutParams(new Gallery.LayoutParams(IMAGE_DIM,
-							IMAGE_DIM));
-					imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-					imageView.setBackgroundResource(mGalleryItemBackground);
-
+			image1.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					for(int i=0; i<ids.length; i++) {
+						if(v.getId() == ids[i]) {
+							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
+							selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
+							startActivity(selectLocationIntent);				        }
+					}
 				}
+			});
 
-				// Set the image for the imageView
-				imageView.setImageResource(mImageIds[position]);
+			image2.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					for(int i=0; i<ids.length; i++) {
+						if(v.getId() == ids[i]) {
+							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
+							selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
+							startActivity(selectLocationIntent);				        }
+					}
+				}
+			});
 
-				return imageView;
-			}
-		}
+			image3.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					for(int i=0; i<ids.length; i++) {
+						if(v.getId() == ids[i]) {
+							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
+							selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
+							startActivity(selectLocationIntent);				        }
+					}
+				}
+			});
+
+			image4.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					for(int i=0; i<ids.length; i++) {
+						if(v.getId() == ids[i]) {
+							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
+							selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
+							startActivity(selectLocationIntent);				        }
+					}
+				}
+			});
+
+			image5.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					for(int i=0; i<ids.length; i++) {
+						if(v.getId() == ids[i]) {
+							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
+							selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
+							startActivity(selectLocationIntent);				        }
+					}
+				}
+			});
+			
+			/*
+			// ListView method: vertical layout only
+			// Create the adapter to convert the array to views
+			FriendFavouritesAdapter adapter = new FriendFavouritesAdapter(this, arrayOfPlayers);
+			// Attach the adapter to a ListView
+			ListView FriendFavouritesListView = getListView();
+			FriendFavouritesListView.setAdapter(adapter);
+			adapter.clear();
+			adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_1)));
+			adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_2)));
+			adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_3)));
+			adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_4)));
+			adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_6)));
+
+			FriendFavouritesListView.setOnItemClickListener(new OnItemClickListener() {
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					Log.v(TAG, "Hit on a favourite place, go to set time");
+					Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
+					selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
+					startActivity(selectLocationIntent);					
+				}
+			});
+			;
+
+			 */
+			// advanced method, using twowayview package but
+			// not working for images, need a customized adapter maybe
+			//		items.add(getResources().getDrawable(R.drawable.sample_1));
+			//		items.add(getResources().getDrawable(R.drawable.sample_2));
+			//		items.add(getResources().getDrawable(R.drawable.sample_3));
+			//		items.add(getResources().getDrawable(R.drawable.sample_4));
+			//		items.add(getResources().getDrawable(R.drawable.sample_5));
+			//		items.add(getResources().getDrawable(R.drawable.sample_6));
+			//		items.add(getResources().getDrawable(R.drawable.sample_7));
+			//		ArrayAdapter<Drawable> aItems = new ArrayAdapter<Drawable>(this, R.layout.simple_list_item_1, items);
+
+			//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_1));
+			//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_2));
+			//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_3));
+			//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_4));
+			//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_5));
+			//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_6));
+			//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_7));
+			//		ArrayAdapter<Bitmap> aItems = new ArrayAdapter<Bitmap>(this, R.layout.simple_list_item_1, items);
+
+			//		TwoWayView lvTest = (TwoWayView) findViewById(R.id.lvItems);
+			//		lvTest.setAdapter(aItems);
+			//				
+			//		lvTest.setOnItemClickListener(new OnItemClickListener() {
+			//			public void onItemClick(AdapterView<?> parent, View view,
+			//					int position, long id) {
+			//				Log.v(TAG, "Hit on a favourite place, go to set time");
+			//				Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
+			//				selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
+			//				startActivity(selectLocationIntent);					
+			//			}
+			//		});
+		}			
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
