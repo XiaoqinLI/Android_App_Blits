@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">BLITZ</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
     <string name="send">SEND A</string>
     <string name="popcorn">Popcorn</string>
     <string name="other">Other</string>
@@ -14,11 +14,10 @@
     <string name="blitz_when">when do you want to go?</string>
     <string name="searching">&#160;search nearby</string>
     <string name="your_friend_like">Your friends like...</string>
+    <string name="add_description">Add description (optional)</string>
     <string name="time_between">Between</string>
     <string name="time_and">and</string>
-        
-    
-    <string name="action_settings">Settings</string>
+           
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="username">&#160;Username</string>
@@ -35,5 +34,29 @@
     <string name="title_activity_select_contact">SelectContactActivity</string>
     <string name="title_activity_select_location">SelectLocationActivity</string>
     <string name="title_activity_finalize_time">FinalizeTimeActivity</string>
+    
+    <string-array name="restaurants">
+        <item>Mellow Mushroom</item>
+        <item>Madam Mam\'s</item>
+        <item>Noodles &amp; Company</item>
+        <item>Qdoba Mexican Grill</item>
+        <item>Quizno\'s</item>
+    </string-array>
+    
+    <string-array name="movies">
+        <item>Forrest Gump</item>
+        <item>The Princess Bride</item>
+        <item>Harry Potter</item>
+        <item>The Hitchhiker\'s Guide to the Galaxy</item>
+        <item>Frozen</item>
+    </string-array>
+    
+    <string-array name="bars">
+        <item>Crown &amp; Anchor Pub</item>
+        <item>Posse East</item>
+        <item>Cain &amp; Abel\'s</item>
+        <item>Spider House Cafe</item>
+        <item>The Hole in the Wall</item>
+    </string-array>
 
 </resources>

@@ -6,29 +6,18 @@ import java.util.ArrayList;
 import org.lucasr.twowayview.TwoWayView;
 
 import android.app.Activity;
-import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Gallery;
-import android.widget.HorizontalScrollView;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -38,6 +27,15 @@ public class SelectLocationActivity extends Activity {
 	private String eventName;
 	private LinearLayout myGallery;
 	private int[] ids = {R.id.favourite1, R.id.favourite2, R.id.favourite3, R.id.favourite4, R.id.favourite5};
+	private TextView eventLabel, restaurantLabel;
+	private AutoCompleteTextView autoCompletetextView;
+
+	private static final String[] RESTAURANT = new String[] { "Mellow Mushroom", "Madam Mam's", 
+		"Qdoba Mexican Grill", "Noodles & Company", "Quizno's"};
+	private static final String[] MOVIE = new String[] { "Forrest Gump", "The Princess Bride",
+		"Harry Potter", "The Hitchhiker's Guide to the Galaxy", "Frozen"};
+	private static final String[] BAR = new String[] { "Crown & Anchor Pub", "Posse East", 
+		"Cain & Abel's", "Spider House Cafe", "The Hole in the Wall"};
 
 	//	private static ArrayList<FriendFavourites> arrayOfPlayers = new ArrayList<FriendFavourites>();
 	//	private ArrayList<Bitmap> items = new ArrayList<Bitmap>();
@@ -50,27 +48,55 @@ public class SelectLocationActivity extends Activity {
 		eventName = intent.getStringExtra("EXTRA_EVENT_NAME");
 
 		if (eventName.equals("RESTAURANT")){
-			setContentView(R.layout.activity_select_location);
+			setContentView(R.layout.activity_select_location_restaurant);			
+		}
+		else if (eventName.equals("OTHER")){
+			setContentView(R.layout.activity_select_location_other);			
+
 		}
 		else{
-			setContentView(R.layout.activity_select_location_no_horizatalview);
+			setContentView(R.layout.activity_select_location_movie_bar);
 		}
 
 		layout =(LinearLayout)findViewById(R.id.select_location_activity_bg);	
+		eventLabel = (TextView)findViewById(R.id.where_to_blitz);
+		restaurantLabel = (TextView)findViewById(R.id.where_to_blitz_rest);
+
 		if (eventName.equals("BAR")){
 			layout.setBackgroundResource(R.drawable.blitzbg_bars);
+			eventLabel.setText("where do you want to go?");
+			autoCompletetextView = (AutoCompleteTextView) findViewById(R.id.autocomplete_items);
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+					R.layout.list_item, BAR);
+			autoCompletetextView.setAdapter(adapter);
+			autoCompletetextView.setOnItemClickListener(new OnItemClickListener() {
+				// Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+						long arg3) {
+					Toast.makeText(getApplicationContext(), "The winner is:" + arg0.getAdapter().getItem(arg2), Toast.LENGTH_SHORT).show();
+
+				}
+			});
 		}
 		else if (eventName.equals("RESTAURANT")){
 			layout.setBackgroundResource(R.drawable.blitzbg_restaurants);
-		}
-		else if (eventName.equals("MOVIE")){
-			layout.setBackgroundResource(R.drawable.blitzbg_movies);
-		}
-		else if (eventName.equals("OTHER")){
-			layout.setBackgroundResource(R.drawable.blitzbg_events);
-		}
-		
-		if (eventName.equals("RESTAURANT")){
+			restaurantLabel.setText("where do you want to go?");
+
+			autoCompletetextView = (AutoCompleteTextView) findViewById(R.id.autocomplete_items);
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+					R.layout.list_item, RESTAURANT);
+			autoCompletetextView.setAdapter(adapter);
+			autoCompletetextView.setOnItemClickListener(new OnItemClickListener() {
+				// Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+						long arg3) {
+					Toast.makeText(getApplicationContext(), "The winner is:" + arg0.getAdapter().getItem(arg2), Toast.LENGTH_SHORT).show();
+
+				}
+			});
+
 			// HorizontalScrollView: dumb method
 			ImageView image1 = (ImageView) findViewById(R.id.favourite1);
 			ImageView image2 = (ImageView) findViewById(R.id.favourite2);
@@ -81,7 +107,6 @@ public class SelectLocationActivity extends Activity {
 			image1.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					for(int i=0; i<ids.length; i++) {
 						if(v.getId() == ids[i]) {
 							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
@@ -94,7 +119,6 @@ public class SelectLocationActivity extends Activity {
 			image2.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					for(int i=0; i<ids.length; i++) {
 						if(v.getId() == ids[i]) {
 							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
@@ -107,7 +131,6 @@ public class SelectLocationActivity extends Activity {
 			image3.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					for(int i=0; i<ids.length; i++) {
 						if(v.getId() == ids[i]) {
 							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
@@ -120,7 +143,6 @@ public class SelectLocationActivity extends Activity {
 			image4.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					for(int i=0; i<ids.length; i++) {
 						if(v.getId() == ids[i]) {
 							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
@@ -133,7 +155,6 @@ public class SelectLocationActivity extends Activity {
 			image5.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					for(int i=0; i<ids.length; i++) {
 						if(v.getId() == ids[i]) {
 							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
@@ -142,8 +163,32 @@ public class SelectLocationActivity extends Activity {
 					}
 				}
 			});
-			
-			/*
+		}
+		else if (eventName.equals("MOVIE")){
+			layout.setBackgroundResource(R.drawable.blitzbg_movies);
+			eventLabel.setText("what do you want to see?");
+			autoCompletetextView = (AutoCompleteTextView) findViewById(R.id.autocomplete_items);
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+					R.layout.list_item, MOVIE);
+			autoCompletetextView.setAdapter(adapter);
+			autoCompletetextView.setOnItemClickListener(new OnItemClickListener() {
+				// Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+						long arg3) {
+					Toast.makeText(getApplicationContext(), "The winner is:" + arg0.getAdapter().getItem(arg2), Toast.LENGTH_SHORT).show();
+
+				}
+			});
+		}
+		else if (eventName.equals("OTHER")){
+			layout.setBackgroundResource(R.drawable.blitzbg_events);
+			eventLabel.setText("what do you want to do?");
+		}
+
+		//		if (eventName.equals("RESTAURANT")){
+
+		/*
 			// ListView method: vertical layout only
 			// Create the adapter to convert the array to views
 			FriendFavouritesAdapter adapter = new FriendFavouritesAdapter(this, arrayOfPlayers);
@@ -168,40 +213,40 @@ public class SelectLocationActivity extends Activity {
 			});
 			;
 
-			 */
-			// advanced method, using twowayview package but
-			// not working for images, need a customized adapter maybe
-			//		items.add(getResources().getDrawable(R.drawable.sample_1));
-			//		items.add(getResources().getDrawable(R.drawable.sample_2));
-			//		items.add(getResources().getDrawable(R.drawable.sample_3));
-			//		items.add(getResources().getDrawable(R.drawable.sample_4));
-			//		items.add(getResources().getDrawable(R.drawable.sample_5));
-			//		items.add(getResources().getDrawable(R.drawable.sample_6));
-			//		items.add(getResources().getDrawable(R.drawable.sample_7));
-			//		ArrayAdapter<Drawable> aItems = new ArrayAdapter<Drawable>(this, R.layout.simple_list_item_1, items);
+		 */
+		// advanced method, using twowayview package but
+		// not working for images, need a customized adapter maybe
+		//		items.add(getResources().getDrawable(R.drawable.sample_1));
+		//		items.add(getResources().getDrawable(R.drawable.sample_2));
+		//		items.add(getResources().getDrawable(R.drawable.sample_3));
+		//		items.add(getResources().getDrawable(R.drawable.sample_4));
+		//		items.add(getResources().getDrawable(R.drawable.sample_5));
+		//		items.add(getResources().getDrawable(R.drawable.sample_6));
+		//		items.add(getResources().getDrawable(R.drawable.sample_7));
+		//		ArrayAdapter<Drawable> aItems = new ArrayAdapter<Drawable>(this, R.layout.simple_list_item_1, items);
 
-			//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_1));
-			//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_2));
-			//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_3));
-			//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_4));
-			//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_5));
-			//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_6));
-			//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_7));
-			//		ArrayAdapter<Bitmap> aItems = new ArrayAdapter<Bitmap>(this, R.layout.simple_list_item_1, items);
+		//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_1));
+		//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_2));
+		//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_3));
+		//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_4));
+		//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_5));
+		//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_6));
+		//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_7));
+		//		ArrayAdapter<Bitmap> aItems = new ArrayAdapter<Bitmap>(this, R.layout.simple_list_item_1, items);
 
-			//		TwoWayView lvTest = (TwoWayView) findViewById(R.id.lvItems);
-			//		lvTest.setAdapter(aItems);
-			//				
-			//		lvTest.setOnItemClickListener(new OnItemClickListener() {
-			//			public void onItemClick(AdapterView<?> parent, View view,
-			//					int position, long id) {
-			//				Log.v(TAG, "Hit on a favourite place, go to set time");
-			//				Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
-			//				selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
-			//				startActivity(selectLocationIntent);					
-			//			}
-			//		});
-		}			
+		//		TwoWayView lvTest = (TwoWayView) findViewById(R.id.lvItems);
+		//		lvTest.setAdapter(aItems);
+		//				
+		//		lvTest.setOnItemClickListener(new OnItemClickListener() {
+		//			public void onItemClick(AdapterView<?> parent, View view,
+		//					int position, long id) {
+		//				Log.v(TAG, "Hit on a favourite place, go to set time");
+		//				Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
+		//				selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
+		//				startActivity(selectLocationIntent);					
+		//			}
+		//		});
+		//		}			
 	}
 
 	@Override

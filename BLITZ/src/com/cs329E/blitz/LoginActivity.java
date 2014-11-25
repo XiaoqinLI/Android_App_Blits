@@ -39,7 +39,6 @@ public class LoginActivity extends Activity {
 		
 		usernameEdit = (EditText) findViewById(R.id.usernameText);
 		passwordEdit = (EditText) findViewById(R.id.passwordText);
-		
 		SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_PRIVATE);//  Preferences(Context.MODE_PRIVATE);
         String storedUsername = myPrefs.getString("username", "");
         String storedPassword = myPrefs.getString("password", "");
