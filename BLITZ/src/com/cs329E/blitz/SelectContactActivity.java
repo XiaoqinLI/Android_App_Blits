@@ -1,32 +1,31 @@
 package com.cs329E.blitz;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
-import android.widget.Toast;
+import android.widget.ListView;
 
-public class SelectContactActivity extends Activity {
+public class SelectContactActivity extends ListActivity {
 	
 	private static final String TAG = "Select Contact Activity";	
 	private static final int PICK_CONTACT = 2;
 	private LinearLayout layout;
-	private LinearLayout contactlayout;
 	private String eventName;
+	
+	ContactAdapter adapter;
+	private static ArrayList<Contact> arrayOfContacts = new ArrayList<Contact>();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,13 @@ public class SelectContactActivity extends Activity {
 			layout.setBackgroundResource(R.drawable.blitzbg_events);
 		}
 		
-		contactlayout =(LinearLayout)findViewById(R.id.select_contact_checkboxes);
+		adapter = new ContactAdapter(this, arrayOfContacts);
+		final ListView contactListView = getListView();
+		contactListView.setAdapter(adapter);
+		
+		adapter.add(new Contact(1, "Michael"));
+		adapter.add(new Contact(1, "Dwight"));
+		adapter.add(new Contact(1, "Jim"));
 		
 		
 		final Button addFromContactButton = (Button) findViewById(R.id.contactbutton);		
@@ -94,15 +99,8 @@ public class SelectContactActivity extends Activity {
 	        Cursor c =  getContentResolver().query(contactData, null, null, null, null);
 	        if (c.moveToFirst()) {
 	          String name = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-	          // TODO Whatever you want to do with the selected contact name.
-	          CheckBox checkbox = new CheckBox(getBaseContext());
-	          checkbox = (CheckBox)((LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE)).inflate(R.layout.right_check_box,null);
-	          checkbox.setText(name);
-	          checkbox.setTextColor(Color.BLACK);
-	          checkbox.setChecked(true);
-	          
-	          LinearLayout.LayoutParams checkbox_relativeParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-	          contactlayout.addView(checkbox, checkbox_relativeParams);
+	          // TODO Whatever you want to do with the selected contact name.	          
+	          adapter.add(new Contact(1, name, true));
 	        }
 	      }
 	      break;

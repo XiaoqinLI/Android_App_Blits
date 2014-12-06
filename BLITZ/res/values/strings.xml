@@ -35,6 +35,8 @@
     <string name="title_activity_select_location">SelectLocationActivity</string>
     <string name="title_activity_finalize_time">FinalizeTimeActivity</string>
     
+    <string name="contact_name">Contact Name</string>
+    
     <string-array name="restaurants">
         <item>Mellow Mushroom</item>
         <item>Madam Mam\'s</item>

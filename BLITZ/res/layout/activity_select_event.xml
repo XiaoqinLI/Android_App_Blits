@@ -8,76 +8,85 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:weightSum="6"
     tools:context="com.cs329E.blitz.SelectEventActivity" >
-	
-    <RelativeLayout
-        android:layout_width="match_parent"
-	    android:layout_height="0dp"
-	    android:layout_weight="1" >
-	    <TextView
-	        android:id="@+id/textView1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentTop="true"
-	        android:layout_centerHorizontal="true"
-	        android:layout_centerVertical="true"
-	        android:layout_marginTop="15dp"
-	        android:text="@string/send"
-	        android:textSize="32sp"
-	        android:textStyle="bold" />
-	</RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4.5" >
+        android:layout_weight="2" >
 
-        <ImageView
-            android:id="@+id/option3_img"
+        <TextView
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/option1_img"
-            android:layout_alignTop="@+id/option4_img"
-            android:contentDescription="@string/beer"
-            android:src="@drawable/beer" />
-
-        <ImageView
-            android:id="@+id/option2_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/option4_img"
-            android:layout_alignLeft="@+id/option4_img"
-            android:contentDescription="@string/dinnerplate"
-            android:src="@drawable/dinnerplate" />
-
-        <ImageView
-            android:id="@+id/option4_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/option1_img"
-            android:layout_marginTop="22dp"
-            android:layout_toRightOf="@+id/option5_img"
-            android:contentDescription="@string/other"
-            android:src="@drawable/other" />
-
-        <ImageView
-            android:id="@+id/option1_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/option5_img"
-            android:contentDescription="@string/popcorn"
-            android:src="@drawable/popcorn" />
-
-        <ImageView
-            android:id="@+id/option5_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/option2_img"
+            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:contentDescription="@string/alignment_dot"
-            android:src="@drawable/alignment_dot" />
+            android:layout_centerVertical="true"
+            android:layout_marginTop="15dp"
+            android:text="@string/send"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3" >
+    
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:weightSum="2" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/option1_img"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@drawable/movies" />
+
+            <ImageView
+                android:id="@+id/option2_img"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@drawable/restaurants" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/option3_img"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@drawable/bars" />
+
+            <ImageView
+                android:id="@+id/option4_img"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@drawable/other" />
+        </TableRow>
+    </TableLayout>
+    
     </RelativeLayout>
 
 </LinearLayout>
