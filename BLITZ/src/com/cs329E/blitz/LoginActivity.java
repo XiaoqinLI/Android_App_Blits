@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -39,6 +40,7 @@ public class LoginActivity extends Activity {
 		Log.i(TAG, "created the login activity");
 		
 		Typeface GillSansLight = Typeface.createFromAsset(getAssets(), "fonts/GillSans-Light.ttf");
+		Typeface GillSans = Typeface.createFromAsset(getAssets(), "fonts/GillSans.ttf");
 
 		
 		usernameEdit = (EditText) findViewById(R.id.usernameText);
@@ -50,6 +52,9 @@ public class LoginActivity extends Activity {
 		usernameEdit.setTypeface(GillSansLight);
 		passwordEdit.setTypeface(GillSansLight);
         
+		TextView register = (TextView) findViewById(R.id.textView1);
+		register.setTypeface(GillSans);
+		
         
         if ((storedUsername != null && !storedUsername.isEmpty()) && (storedPassword != null && !storedPassword.isEmpty()))
         {
