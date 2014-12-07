@@ -3,6 +3,7 @@ package com.cs329E.blitz;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -37,13 +38,19 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 		Log.i(TAG, "created the login activity");
 		
+		Typeface GillSansLight = Typeface.createFromAsset(getAssets(), "fonts/GillSans-Light.ttf");
+
+		
 		usernameEdit = (EditText) findViewById(R.id.usernameText);
 		passwordEdit = (EditText) findViewById(R.id.passwordText);
 		SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_PRIVATE);//  Preferences(Context.MODE_PRIVATE);
         String storedUsername = myPrefs.getString("username", "");
         String storedPassword = myPrefs.getString("password", "");
        
-		
+		usernameEdit.setTypeface(GillSansLight);
+		passwordEdit.setTypeface(GillSansLight);
+        
+        
         if ((storedUsername != null && !storedUsername.isEmpty()) && (storedPassword != null && !storedPassword.isEmpty()))
         {
         	Log.v(TAG, "Saved username and password detected. Launching game selection screen");
@@ -51,8 +58,10 @@ public class LoginActivity extends Activity {
 			startActivity(explicitIntent);
         }
 		       
+
+		final Button registerButton = (Button) findViewById(R.id.registerButton);
+		registerButton.setTypeface(GillSansLight);
 		
-		final Button registerButton = (Button) findViewById(R.id.registerButton);		
 		registerButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Log.v(TAG, "User pressed the register button");
@@ -61,7 +70,12 @@ public class LoginActivity extends Activity {
 			}
 		});
 		
+		
+		
+		
 		final Button loginButton = (Button) findViewById(R.id.loginButton);		
+		loginButton.setTypeface(GillSansLight);
+		
 		loginButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {				
 				Log.v(TAG, "User pressed the login button");

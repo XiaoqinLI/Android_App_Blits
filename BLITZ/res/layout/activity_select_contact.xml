@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/select_contact_activity_bg"
     android:layout_width="match_parent"
@@ -11,64 +11,62 @@
     android:weightSum="7"
     tools:context="com.cs329E.blitz.SelectContactActivity" >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-	    android:layout_height="0dp"
-	    android:layout_weight="2" >	
-	    <TextView
-	        android:id="@+id/who_to_blitz"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentBottom="true"
-	        android:layout_centerHorizontal="true"
-	        android:text="@string/blitz_who"
-	        android:textSize="24sp"
-	        android:textStyle="bold" />   
-	</RelativeLayout>
-	
+    <TextView
+        android:id="@+id/who_to_blitz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:text="@string/blitz_who"
+        android:textSize="24sp"
+        android:textStyle="bold" />
     
-	<ListView
+
+    <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-  		android:divider="@android:color/transparent"
-  		android:dividerHeight="10.0sp" >
+        android:layout_height="fill_parent"
+        android:layout_margin="20dp"
+        android:layout_above="@+id/contactbutton"
+        android:layout_below="@+id/who_to_blitz"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/contacts_background"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp" >
+
     </ListView>
 
+
+    <Button
+        android:id="@+id/contactbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/facebookbutton"
+        android:layout_alignBottom="@+id/facebookbutton"
+        android:layout_toRightOf="@+id/next"
+        android:text="Contact" />
+
+    <Button
+        android:id="@+id/facebookbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/next"
+        android:layout_alignLeft="@android:id/list"
+        android:layout_marginBottom="22dp"
+        android:layout_marginLeft="27dp"
+        android:text="Facebook" />
     
+	<Button
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#6495a6"
+        android:textColor="#ffffff"
+        android:text="Next" />
 	
-    <RelativeLayout
-        android:layout_width="match_parent"
-	    android:layout_height="0dp"
-	    android:layout_weight="1.5" >
-
-        <Button
-            android:id="@+id/next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-        	android:background="@drawable/nextbutton"
-            android:text="" />
-
-        <Button
-            android:id="@+id/contactbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="30dp"
-            android:text="Contact" />
-
-        <Button
-            android:id="@+id/facebookbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="30dp"          
-            android:text="Facebook" />
-      
-	</RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -14,14 +15,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 public class SelectContactActivity extends ListActivity {
 	
 	private static final String TAG = "Select Contact Activity";	
 	private static final int PICK_CONTACT = 2;
-	private LinearLayout layout;
+	private RelativeLayout layout;
 	private String eventName;
 	
 	ContactAdapter adapter;
@@ -32,7 +34,7 @@ public class SelectContactActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_contact);
 		
-		layout =(LinearLayout)findViewById(R.id.select_contact_activity_bg);
+		layout =(RelativeLayout)findViewById(R.id.select_contact_activity_bg);
 		Intent intent = getIntent();
 		eventName = intent.getStringExtra("EXTRA_EVENT_NAME");
 		if (eventName.equals("BAR")){
@@ -48,13 +50,20 @@ public class SelectContactActivity extends ListActivity {
 			layout.setBackgroundResource(R.drawable.blitzbg_events);
 		}
 		
+		Typeface GillSans = Typeface.createFromAsset(getAssets(), "fonts/GillSans.ttf");
+		Typeface GillSansLight = Typeface.createFromAsset(getAssets(), "fonts/GillSans-Light.ttf");
+		
+		TextView tv = (TextView) findViewById(R.id.who_to_blitz);
+		tv.setTypeface(GillSans);
+		
 		adapter = new ContactAdapter(this, arrayOfContacts);
 		final ListView contactListView = getListView();
 		contactListView.setAdapter(adapter);
 		
-		adapter.add(new Contact(1, "Michael"));
-		adapter.add(new Contact(1, "Dwight"));
-		adapter.add(new Contact(1, "Jim"));
+		adapter.add(new Contact(1, "Michael Scott"));
+		adapter.add(new Contact(1, "Dwight Schrute"));
+		adapter.add(new Contact(1, "Jim Halpert"));
+		
 		
 		
 		final Button addFromContactButton = (Button) findViewById(R.id.contactbutton);		
@@ -74,7 +83,8 @@ public class SelectContactActivity extends ListActivity {
 			}
 		});	
 		
-		final Button nextButton = (Button) findViewById(R.id.next);		
+		final Button nextButton = (Button) findViewById(R.id.next);
+		nextButton.setTypeface(GillSansLight);
 
 		nextButton.setOnClickListener(new View.OnClickListener() {
 			@Override

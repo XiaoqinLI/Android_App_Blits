@@ -16,22 +16,17 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_alignBottom="@+id/passwordText"
-        android:layout_alignLeft="@+id/registerButton"
+        android:layout_alignLeft="@+id/passwordText"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/edittextbackground"
-        android:inputType="textVisiblePassword"
-        android:hint="@string/username" >
-        <requestFocus />
-    </EditText>
+        android:background="@drawable/textinput"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff" >
 
-    <Button
-        android:id="@+id/registerButton"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/buttonbggray"
-        android:text="@string/register" />
+        <requestFocus  />
+
+    </EditText>
 
     <EditText
         android:id="@+id/passwordText"
@@ -40,29 +35,43 @@
         android:layout_alignLeft="@+id/loginButton"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="162dp"
-        android:background="@drawable/edittextbackground"
+        android:background="@drawable/textinput"
         android:ems="10"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff"
         android:hint="@string/password"
         android:inputType="textPassword" />
-
+    
+    
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/usernameText"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/buttonbglight"
-        android:text="@string/login" />
+        android:background="#6495a6"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:text="@string/register" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignLeft="@+id/registerButton"
         android:layout_below="@+id/loginButton"
         android:layout_marginTop="23dp"
         android:text="@string/needtoregister"
         android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/usernameText"
+        android:background="#6495a6"
+		android:textColor="#ffffff" 
+        android:text="@string/login"/>
 
 </RelativeLayout>
