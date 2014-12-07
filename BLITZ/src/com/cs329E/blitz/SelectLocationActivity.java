@@ -83,11 +83,23 @@ public class SelectLocationActivity extends Activity {
 			layout.setBackgroundResource(R.drawable.blitzbg_restaurants);
 			restaurantLabel.setText("where do you want to go?");
 
-			autoCompletetextView = (AutoCompleteTextView) findViewById(R.id.autocomplete_items);
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-					R.layout.list_item, RESTAURANT);
-			autoCompletetextView.setAdapter(adapter);
-			autoCompletetextView.setOnItemClickListener(new OnItemClickListener() {
+			ArrayList<Location> locations = new ArrayList<Location>();
+			AutoCompleteTextView txtLocations;
+			LocationAdapter adapter;
+			
+			txtLocations = (AutoCompleteTextView) findViewById(R.id.autocomplete_items);
+			locations.add(new Location(1, "Mellow Mushroom"));
+			locations.add(new Location(2, "Madam Mam's"));
+			locations.add(new Location(3, "Noodles & Company"));
+			locations.add(new Location(4, "Qdoba Mexican Grill"));
+			locations.add(new Location(5, "Quizno's"));
+			
+			adapter = new LocationAdapter(this, locations);
+			txtLocations.setAdapter(adapter);
+			txtLocations.setThreshold(0);
+			
+
+			txtLocations.setOnItemClickListener(new OnItemClickListener() {
 				// Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
 				@Override
 				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,

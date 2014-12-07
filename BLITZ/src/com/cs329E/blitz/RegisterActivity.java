@@ -2,6 +2,7 @@ package com.cs329E.blitz;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -27,7 +28,15 @@ public class RegisterActivity extends Activity {
 		passwordEdit = (EditText) findViewById(R.id.passwordText);
 		confirmPasswordEdit = (EditText) findViewById(R.id.passwordConfirmText);
 		
+		Typeface GillSansLight = Typeface.createFromAsset(getAssets(), "fonts/GillSans-Light.ttf");
+		usernameEdit.setTypeface(GillSansLight);
+		passwordEdit.setTypeface(GillSansLight);
+		confirmPasswordEdit.setTypeface(GillSansLight);
+		
+		
 		final Button registrationButton = (Button) findViewById(R.id.register_user_button);
+		registrationButton.setTypeface(GillSansLight);
+		
 		registrationButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {			
