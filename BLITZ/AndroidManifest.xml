@@ -44,6 +44,10 @@
             android:name=".FinalizeTimeActivity"
             android:label="@string/title_activity_finalize_time" >
         </activity>
+        <activity
+            android:name=".MyInvitationsActivity"
+            android:label="@string/title_activity_my_invitations" >
+        </activity>
     </application>
 
 </manifest>

@@ -3,29 +3,29 @@ package com.cs329E.blitz;
 
 import java.util.ArrayList;
 
-import com.devsmart.android.ui.HorizontalListView;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.devsmart.android.ui.HorizontalListView;
 
 public class SelectLocationActivity extends Activity {
 	private static final String TAG = "Select Location Activity";
-	private LinearLayout layout;
+	private RelativeLayout layout;
 	private String eventName;
-	private LinearLayout myGallery;
 //	private int[] ids = {R.id.favourite1, R.id.favourite2, R.id.favourite3, R.id.favourite4, R.id.favourite5};
 	private TextView eventLabel, restaurantLabel;
 	private AutoCompleteTextView autoCompletetextView;
@@ -58,7 +58,7 @@ public class SelectLocationActivity extends Activity {
 			setContentView(R.layout.activity_select_location_movie_bar);
 		}
 
-		layout =(LinearLayout)findViewById(R.id.select_location_activity_bg);	
+		layout =(RelativeLayout)findViewById(R.id.select_location_activity_bg);	
 		eventLabel = (TextView)findViewById(R.id.where_to_blitz);
 		restaurantLabel = (TextView)findViewById(R.id.where_to_blitz_rest);
 
@@ -107,7 +107,7 @@ public class SelectLocationActivity extends Activity {
 				@Override
 				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 						long arg3) {
-					Toast.makeText(getApplicationContext(), "The winner is:" + arg0.getAdapter().getItem(arg2), Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), "Selected: " + arg0.getAdapter().getItem(arg2), Toast.LENGTH_SHORT).show();
 
 				}
 			});
@@ -123,6 +123,18 @@ public class SelectLocationActivity extends Activity {
 			
 			hlvAdapter = new FavoritesAdapter(this, favorites);
 			hListView.setAdapter(hlvAdapter);
+			
+			
+			Button nextButton = (Button) findViewById(R.id.next2);
+			nextButton.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {				
+					Log.v(TAG, "User pressed the next button");
+					Intent nextIntent = new Intent(SelectLocationActivity.this, FinalizeTimeActivity.class);
+					nextIntent.putExtra("EXTRA_EVENT_NAME", eventName);
+					startActivity(nextIntent);
+				}
+			});	
+			
 			
 		}
 		else if (eventName.equals("MOVIE")){

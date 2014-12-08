@@ -38,6 +38,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
+        android:layout_marginBottom="40dp"
         android:weightSum="2" >
 
         <TableRow
@@ -86,6 +87,18 @@
                 android:background="@drawable/other" />
         </TableRow>
     </TableLayout>
+    
+	<Button
+        android:id="@+id/invitationsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#6495a6"
+        android:textColor="#ffffff"
+        android:text="View Invitations" />
     
     </RelativeLayout>
 

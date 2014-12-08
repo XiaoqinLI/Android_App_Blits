@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class SelectEventActivity extends Activity {
@@ -64,6 +65,17 @@ public class SelectEventActivity extends Activity {
 				Intent otherIntent = new Intent(getBaseContext(), SelectContactActivity.class);
 				otherIntent.putExtra("EXTRA_EVENT_NAME", "OTHER");
 				startActivity(otherIntent);
+			}
+		});
+		
+		Button invitationsButton = (Button) findViewById(R.id.invitationsButton);		
+		invitationsButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Log.v(TAG, "User pressed the other button");
+				Intent invitationsIntent = new Intent(getBaseContext(), MyInvitationsActivity.class);
+				startActivity(invitationsIntent);
 			}
 		});
 			
