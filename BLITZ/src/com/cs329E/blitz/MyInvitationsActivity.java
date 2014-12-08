@@ -29,7 +29,8 @@ public class MyInvitationsActivity extends ListActivity {
 		adapter = new InvitationAdapter(this, arrayOfInvitations);
 		final ListView invitationListView = getListView();
 		invitationListView.setAdapter(adapter);
-		
+		adapter.clear();
+
 		ArrayList<Contact> contacts1 = new ArrayList<Contact>();
 		contacts1.add(new Contact(1, "Jim"));
 		contacts1.add(new Contact(2, "Dwight"));
@@ -38,7 +39,6 @@ public class MyInvitationsActivity extends ListActivity {
 		contacts1.add(new Contact(5, "Michael"));
 		adapter.add(new Blitz(1, "Pam Beesly", "restaurant", contacts1));
 		
-		adapter.clear();
 		
 		Button backButton = (Button) findViewById(R.id.backbutton);		
 		backButton.setOnClickListener(new View.OnClickListener() {

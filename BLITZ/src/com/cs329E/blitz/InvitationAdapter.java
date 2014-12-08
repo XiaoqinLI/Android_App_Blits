@@ -47,9 +47,10 @@ public class InvitationAdapter extends ArrayAdapter<Blitz>{
 		for (Contact c : attendeesList)
 		{
 			if (count == len-1 && len > 1)
-				s += "and ";
+				s += "and " + c.getContactName();
+			else
+				s += c.getContactName() + ", ";
 			
-			s += c.getContactName();
 			count++;
 		}
 		
