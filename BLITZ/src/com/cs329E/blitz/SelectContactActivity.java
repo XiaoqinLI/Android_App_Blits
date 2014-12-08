@@ -60,6 +60,7 @@ public class SelectContactActivity extends ListActivity {
 		final ListView contactListView = getListView();
 		contactListView.setAdapter(adapter);
 		
+		adapter.clear();
 		adapter.add(new Contact(1, "Michael Scott"));
 		adapter.add(new Contact(1, "Dwight Schrute"));
 		adapter.add(new Contact(1, "Jim Halpert"));
