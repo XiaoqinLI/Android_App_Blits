@@ -1,6 +1,7 @@
 package com.cs329E.blitz;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -54,18 +55,6 @@ public class LocationAdapter extends BaseAdapter implements Filterable{
 		locationNameTV.setText(location.getLocationName());
 		
 		return convertView;
-		
-		
-//		LocationView lv;
-//		if (arg1 == null)
-//			lv = new LocationView(_context, locations.get(arg0));
-//		else{
-//			lv = (LocationView) arg1;
-//			lv.setID(locations.get(arg0).getID());
-//			lv.setName(locations.get(arg0),getName());
-//		}
-//		return lv;
-
 	}
 	
 	@Override
@@ -86,6 +75,12 @@ public class LocationAdapter extends BaseAdapter implements Filterable{
 		
 		@Override
 		protected FilterResults performFiltering(CharSequence constraint){
+			
+			// case insensitive searching
+			String s_constraint = constraint.toString();
+			s_constraint = s_constraint.toLowerCase(Locale.getDefault());
+			constraint = s_constraint;
+			
 			FilterResults oReturn = new FilterResults();
 			ArrayList<Location> results = new ArrayList<Location>();
 			if (orig == null)
@@ -95,7 +90,7 @@ public class LocationAdapter extends BaseAdapter implements Filterable{
 			{
 				if (orig != null && orig.size() > 0){
 					for (Location l : orig) {
-						if (l.getLocationName().contains(constraint))
+						if (l.getLocationName().toLowerCase(Locale.getDefault()).contains(constraint))
 							results.add(l);
 					}
 				}

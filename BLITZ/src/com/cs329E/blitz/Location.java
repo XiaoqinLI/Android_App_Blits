@@ -60,6 +60,12 @@ public class Location {
 		this.pic = pic;
 	}
 	
+	// ***Must override string method for autocomplete listview
+    @Override
+    public String toString() {
+        return locationName;
+    }
+	
 	
 	
 }
