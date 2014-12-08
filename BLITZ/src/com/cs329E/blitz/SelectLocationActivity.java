@@ -3,7 +3,6 @@ package com.cs329E.blitz;
 
 import java.util.ArrayList;
 
-import org.lucasr.twowayview.TwoWayView;
 import com.devsmart.android.ui.HorizontalListView;
 
 import android.app.Activity;
