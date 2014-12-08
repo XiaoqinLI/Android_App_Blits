@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shape 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:drawable="@drawable/search">
+	<size android:width="50dp" android:height="42dp"/>
+	<stroke android:width="20dp" android:color="#3c7e95" />
+</shape>
+
+

@@ -96,6 +96,7 @@ public class LocationAdapter extends BaseAdapter implements Filterable{
 				}
 				oReturn.values = results;
 			}
+			
 			return oReturn;
 		}
 		

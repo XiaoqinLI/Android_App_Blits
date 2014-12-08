@@ -4,6 +4,7 @@ package com.cs329E.blitz;
 import java.util.ArrayList;
 
 import org.lucasr.twowayview.TwoWayView;
+import com.devsmart.android.ui.HorizontalListView;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -26,7 +27,7 @@ public class SelectLocationActivity extends Activity {
 	private LinearLayout layout;
 	private String eventName;
 	private LinearLayout myGallery;
-	private int[] ids = {R.id.favourite1, R.id.favourite2, R.id.favourite3, R.id.favourite4, R.id.favourite5};
+//	private int[] ids = {R.id.favourite1, R.id.favourite2, R.id.favourite3, R.id.favourite4, R.id.favourite5};
 	private TextView eventLabel, restaurantLabel;
 	private AutoCompleteTextView autoCompletetextView;
 
@@ -93,10 +94,13 @@ public class SelectLocationActivity extends Activity {
 			locations.add(new Location(3, "Noodles & Company"));
 			locations.add(new Location(4, "Qdoba Mexican Grill"));
 			locations.add(new Location(5, "Quizno's"));
+			locations.add(new Location(6, "Raising Cane's"));
+			locations.add(new Location(7, "Torchy's Tacos"));
+			locations.add(new Location(8, "Whataburger"));
 			
 			adapter = new LocationAdapter(this, locations);
-			txtLocations.setAdapter(adapter);
 			txtLocations.setThreshold(0);
+			txtLocations.setAdapter(adapter);
 			
 
 			txtLocations.setOnItemClickListener(new OnItemClickListener() {
@@ -109,72 +113,18 @@ public class SelectLocationActivity extends Activity {
 				}
 			});
 
-			// HorizontalScrollView: dumb method
-			ImageView image1 = (ImageView) findViewById(R.id.favourite1);
-			ImageView image2 = (ImageView) findViewById(R.id.favourite2);
-			ImageView image3 = (ImageView) findViewById(R.id.favourite3);
-			ImageView image4 = (ImageView) findViewById(R.id.favourite4);
-			ImageView image5 = (ImageView) findViewById(R.id.favourite5);
-
-			image1.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					for(int i=0; i<ids.length; i++) {
-						if(v.getId() == ids[i]) {
-							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
-							selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
-							startActivity(selectLocationIntent);				        }
-					}
-				}
-			});
-
-			image2.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					for(int i=0; i<ids.length; i++) {
-						if(v.getId() == ids[i]) {
-							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
-							selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
-							startActivity(selectLocationIntent);				        }
-					}
-				}
-			});
-
-			image3.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					for(int i=0; i<ids.length; i++) {
-						if(v.getId() == ids[i]) {
-							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
-							selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
-							startActivity(selectLocationIntent);				        }
-					}
-				}
-			});
-
-			image4.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					for(int i=0; i<ids.length; i++) {
-						if(v.getId() == ids[i]) {
-							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
-							selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
-							startActivity(selectLocationIntent);				        }
-					}
-				}
-			});
-
-			image5.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					for(int i=0; i<ids.length; i++) {
-						if(v.getId() == ids[i]) {
-							Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
-							selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
-							startActivity(selectLocationIntent);				        }
-					}
-				}
-			});
+			
+			ArrayList<Location> favorites = new ArrayList<Location>();
+			HorizontalListView hListView = (HorizontalListView) findViewById(R.id.hlistview);
+			FavoritesAdapter hlvAdapter;
+			
+			favorites.add(new Location(1, "Whataburger", getResources().getDrawable(R.drawable.whataburger)));
+			favorites.add(new Location(1, "Torchy's Tacos", getResources().getDrawable(R.drawable.canes)));
+			favorites.add(new Location(1, "Raising Cane's", getResources().getDrawable(R.drawable.torchys)));
+			
+			hlvAdapter = new FavoritesAdapter(this, favorites);
+			hListView.setAdapter(hlvAdapter);
+			
 		}
 		else if (eventName.equals("MOVIE")){
 			layout.setBackgroundResource(R.drawable.blitzbg_movies);

@@ -12,8 +12,8 @@
     <string name="blitz_who">Who do you want to Blitz?</string>
     <string name="blitz_where">where do you want to go?</string>
     <string name="blitz_when">when do you want to go?</string>
-    <string name="searching">&#160;search nearby</string>
-    <string name="your_friend_like">Your friends like...</string>
+    <string name="searching">Search nearby&#8230;</string>
+    <string name="your_friend_like">Your friends like&#8230;</string>
     <string name="add_description">Add description (optional)</string>
     <string name="time_between">Between</string>
     <string name="time_and">and</string>
