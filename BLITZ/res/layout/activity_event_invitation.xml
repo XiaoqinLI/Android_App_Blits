@@ -1,0 +1,85 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="85dp"
+    android:background="@drawable/invitation_bg"
+    tools:context="com.cs329E.blitz.EventInvitationActivity" >
+
+    <TextView
+        android:id="@+id/invitationfrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="Invitation from Pam Beesly"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/when"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/invitationfrom"
+        android:text="When do you want to go to"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/locationname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/when"
+        android:text="Mellow Mushroom"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+    
+    
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/decline"
+        android:layout_below="@+id/locationname"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/contacts_background"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp" >
+
+    </ListView>
+    
+    <Button
+        android:id="@+id/decline"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentBottom="true"
+        android:background="#6495a6"
+        android:textColor="#ffffff"
+        android:text="Decline" />
+    
+    <Button
+        android:id="@+id/accept"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:layout_marginLeft="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/decline"
+        android:background="#6495a6"
+        android:textColor="#ffffff"
+        android:text="Accept" />    
+
+</RelativeLayout>
