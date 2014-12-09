@@ -3,6 +3,7 @@ package com.cs329E.blitz;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,12 +46,13 @@ public class TimeAdapter extends ArrayAdapter<TimeOption>{
 		else
 			m = Integer.toString(time.getMinute());
 		
-		t = h + ":" + m + "" + amPM;
+		t = h + ":" + m + " " + amPM;
 		
 		timeRow.setText(t);
 		
-		
-		
+		Typeface GothamMedium = Typeface.createFromAsset(convertView.getContext().getAssets(), "fonts/Gotham-Medium.otf");
+		timeRow.setTypeface(GothamMedium);
+				
 		if (time.getLocation() != null)
 		{
 			TextView location = (TextView) convertView.findViewById(R.id.location);

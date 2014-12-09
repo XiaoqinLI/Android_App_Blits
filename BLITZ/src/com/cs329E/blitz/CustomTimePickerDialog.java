@@ -12,7 +12,7 @@ import android.widget.TimePicker;
 
 public class CustomTimePickerDialog extends TimePickerDialog {
 
-    private final static int TIME_PICKER_INTERVAL = 5;
+    private final static int TIME_PICKER_INTERVAL = 15;
     private TimePicker timePicker;
     private final OnTimeSetListener callback;
 

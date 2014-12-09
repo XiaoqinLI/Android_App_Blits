@@ -1,9 +1,12 @@
 package com.cs329E.blitz;
 
+import android.graphics.drawable.Drawable;
+
 public class Contact {
 	private int contactId;
 	private String contactName;
 	private boolean isSelected = false;
+	private Drawable avatar;
 
 	public Contact(int contactId, String contactName) {
 		super();
@@ -16,6 +19,13 @@ public class Contact {
 		this.contactId = contactId;
 		this.contactName = contactName;
 		this.isSelected = isSelected;
+	}
+	
+	public Contact(int contactId, String contactName, Drawable avatar) {
+		super();
+		this.contactId = contactId;
+		this.contactName = contactName;
+		this.avatar = avatar;
 	}
 	
 	public int getContactId() {
@@ -41,6 +51,16 @@ public class Contact {
 	public void setSelected(boolean isSelected) {
 		this.isSelected = isSelected;
 	}
+
+	public Drawable getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(Drawable avatar) {
+		this.avatar = avatar;
+	}
+	
+	
 	
 	
 }

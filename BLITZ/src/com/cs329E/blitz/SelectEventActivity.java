@@ -29,7 +29,7 @@ public class SelectEventActivity extends Activity {
 					public boolean onFling(MotionEvent e1, MotionEvent e2,
 							float velocityX, float velocityY) {
 						if (velocityX < -10.0f) {
-							Log.v(TAG, "User pressed the invitations button");
+							Log.v(TAG, "User swiped left");
 							Intent invitationsIntent = new Intent(getBaseContext(), MyInvitationsActivity.class);
 							startActivity(invitationsIntent);
 							overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
