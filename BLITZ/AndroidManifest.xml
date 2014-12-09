@@ -48,6 +48,10 @@
             android:name=".MyInvitationsActivity"
             android:label="@string/title_activity_my_invitations" >
         </activity>
+        <activity
+            android:name=".EventInvitationActivity"
+            android:label="@string/title_activity_event_invitation" >
+        </activity>
     </application>
 
 </manifest>

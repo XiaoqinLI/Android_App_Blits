@@ -3,6 +3,7 @@ package com.cs329E.blitz;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class InvitationAdapter extends ArrayAdapter<Blitz>{
+	String TAG = "Invitation Adapter";
+	
 	public InvitationAdapter(Context context, ArrayList<Blitz> invitations){
 		super (context, 0, invitations);
 	}
@@ -44,12 +47,20 @@ public class InvitationAdapter extends ArrayAdapter<Blitz>{
 		int len = attendeesList.size();
 		int count = 0;
 		
+		if (len == 0)
+			s = "";
+		
 		for (Contact c : attendeesList)
 		{
 			if (count == len-1 && len > 1)
 				s += "and " + c.getContactName();
 			else
-				s += c.getContactName() + ", ";
+			{
+				if (len == 2)
+					s += c.getContactName() + " ";
+				else
+					s += c.getContactName() + ", ";
+			}
 			
 			count++;
 		}

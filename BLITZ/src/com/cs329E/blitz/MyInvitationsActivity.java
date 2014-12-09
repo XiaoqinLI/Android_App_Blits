@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -39,6 +41,30 @@ public class MyInvitationsActivity extends ListActivity {
 		contacts1.add(new Contact(5, "Michael"));
 		adapter.add(new Blitz(1, "Pam Beesly", "restaurant", contacts1));
 		
+		ArrayList<Contact> contacts2 = new ArrayList<Contact>();
+		contacts2.add(new Contact(1, "Pam"));
+		contacts2.add(new Contact(2, "Angela"));
+		adapter.add(new Blitz(1, "Jim Halpert", "movie", contacts2));
+
+		ArrayList<Contact> contacts3 = new ArrayList<Contact>();
+		adapter.add(new Blitz(1, "Michael Scott", "other", contacts3));
+		
+		ArrayList<Contact> contacts4 = new ArrayList<Contact>();
+		contacts4.add(new Contact(1, "Kevin"));
+		contacts4.add(new Contact(2, "Jim"));
+		contacts4.add(new Contact(2, "Toby"));
+		adapter.add(new Blitz(1, "Dwight Schrute", "bar", contacts4));
+
+		
+		invitationListView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Log.v(TAG, "Selected Blitz for RSVP");
+				
+				Intent intent = new Intent(getBaseContext(), EventInvitationActivity.class);
+				startActivity(intent);				
+			
+				}
+		});
 		
 		Button backButton = (Button) findViewById(R.id.backbutton);		
 		backButton.setOnClickListener(new View.OnClickListener() {

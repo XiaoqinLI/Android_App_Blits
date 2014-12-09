@@ -73,7 +73,7 @@ public class SelectEventActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Log.v(TAG, "User pressed the other button");
+				Log.v(TAG, "User pressed the invitations button");
 				Intent invitationsIntent = new Intent(getBaseContext(), MyInvitationsActivity.class);
 				startActivity(invitationsIntent);
 			}
