@@ -4,7 +4,6 @@ import java.util.Calendar;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,7 +18,7 @@ public class FinalizeTimeActivity extends Activity {
 	private static final String TAG = "Finalize Time Activity";
 	private LinearLayout layout;
 	private String eventName;
-	
+
 	private TextView mTimeDisplayBetween;
 	private TextView mTimeDisplayAnd;
 	private Button mPickTimeBetween;
@@ -34,7 +33,7 @@ public class FinalizeTimeActivity extends Activity {
 
 
 	// The callback received when the user "sets" the time in the dialog
-	private TimePickerDialog.OnTimeSetListener mBetweenTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+	private CustomTimePickerDialog.OnTimeSetListener mBetweenTimeSetListener = new CustomTimePickerDialog.OnTimeSetListener() {
 		public void onTimeSet(TimePicker view, int hourOfDayBetween, int minuteBetween ) {
 			mHourBetween = hourOfDayBetween;
 			mMinuteBetween = minuteBetween;
@@ -42,7 +41,7 @@ public class FinalizeTimeActivity extends Activity {
 		}
 	};
 	
-	private TimePickerDialog.OnTimeSetListener mAndTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+	private CustomTimePickerDialog.OnTimeSetListener mAndTimeSetListener = new CustomTimePickerDialog.OnTimeSetListener() {
 		public void onTimeSet(TimePicker view, int hourOfDay, int minute ) {
 			mHourAnd = hourOfDay;
 			mMinuteAnd = minute;
@@ -123,10 +122,10 @@ public class FinalizeTimeActivity extends Activity {
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
 		case TIME_DIALOG_BETWEEN_ID:
-			return new TimePickerDialog(this, mBetweenTimeSetListener, mHourBetween, mMinuteBetween,
+			return new CustomTimePickerDialog(this, mBetweenTimeSetListener, mHourBetween, mMinuteBetween,
 					false);
 		case TIME_DIALOG_AND_ID:
-			return new TimePickerDialog(this, mAndTimeSetListener, mHourAnd, mHourAnd,
+			return new CustomTimePickerDialog(this, mAndTimeSetListener, mHourAnd, mHourAnd,
 					false);
 		}
 		return null;
