@@ -4,20 +4,40 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ViewFlipper;
 
 public class SelectEventActivity extends Activity {
 	
 	private static final String TAG = "Select Event Activity";
-
+	private GestureDetector mGestureDetector;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_select_event);
+				
+		mGestureDetector = new GestureDetector(this,
+				new GestureDetector.SimpleOnGestureListener() {
+					@Override
+					public boolean onFling(MotionEvent e1, MotionEvent e2,
+							float velocityX, float velocityY) {
+						if (velocityX < -10.0f) {
+							Log.v(TAG, "User pressed the invitations button");
+							Intent invitationsIntent = new Intent(getBaseContext(), MyInvitationsActivity.class);
+							startActivity(invitationsIntent);
+							overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+						}
+						return true;
+					}
+				});
 		
 		ImageView movieView = (ImageView) findViewById(R.id.option1_img);
 		ImageView restaurantView = (ImageView) findViewById(R.id.option2_img);
@@ -79,6 +99,11 @@ public class SelectEventActivity extends Activity {
 			}
 		});
 			
+	}
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		return mGestureDetector.onTouchEvent(event);
 	}
 	
 	@Override
