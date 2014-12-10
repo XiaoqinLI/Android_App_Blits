@@ -59,7 +59,7 @@ public class LoginActivity extends Activity {
         if ((storedUsername != null && !storedUsername.isEmpty()) && (storedPassword != null && !storedPassword.isEmpty()))
         {
         	Log.v(TAG, "Saved username and password detected. Launching game selection screen");
-			Intent explicitIntent = new Intent(LoginActivity.this, SelectEventActivity.class);
+			Intent explicitIntent = new Intent(LoginActivity.this, MainScreenActivity.class);
 			startActivity(explicitIntent);
         }
 		       
@@ -86,7 +86,7 @@ public class LoginActivity extends Activity {
 				Log.v(TAG, "User pressed the login button");
 				if (usernameEdit.getText().toString().length() != 0 && passwordEdit.getText().toString().length() != 0){	
 					signIn();
-					Intent loginIntent = new Intent(LoginActivity.this, SelectEventActivity.class);
+					Intent loginIntent = new Intent(LoginActivity.this, MainScreenActivity.class);
 					startActivity(loginIntent);			
 				}
 				else{

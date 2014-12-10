@@ -8,8 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.cs329E.blitz.SelectEventActivity" >
-
+    tools:context="com.cs329E.blitz.MainScreenActivity" >
+    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -38,7 +38,6 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:layout_marginBottom="40dp"
         android:weightSum="2" >
 
         <TableRow
@@ -52,7 +51,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/movies" />
 
             <ImageView
@@ -60,7 +59,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/restaurants" />
         </TableRow>
 
@@ -75,7 +74,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/bars" />
 
             <ImageView
@@ -83,23 +82,15 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/other" />
         </TableRow>
     </TableLayout>
     
-	<Button
-        android:id="@+id/invitationsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="#6495a6"
-        android:textColor="#ffffff"
-        android:text="View Invitations" />
-    
     </RelativeLayout>
-
+    
 </LinearLayout>
+
+
+
+
