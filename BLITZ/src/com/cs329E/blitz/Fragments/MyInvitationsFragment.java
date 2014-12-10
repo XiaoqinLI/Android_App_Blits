@@ -60,8 +60,7 @@ public class MyInvitationsFragment extends ListFragment{
         
 		ListView invitationListView = (ListView) view.findViewById(android.R.id.list);
 	    adapter = new InvitationAdapter(getActivity(), arrayOfInvitations);
-
-//		adapter.clear();
+	    adapter.clear();
 		
 		ArrayList<Contact> contacts1 = new ArrayList<Contact>();
 		contacts1.add(new Contact(1, "Jim"));
