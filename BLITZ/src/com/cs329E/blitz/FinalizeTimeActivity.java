@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -56,6 +57,8 @@ public class FinalizeTimeActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 		setContentView(R.layout.activity_finalize_time);
 		layout =(LinearLayout)findViewById(R.id.finalize_time_activity_bg);
 		Intent intent = getIntent();
@@ -98,11 +101,21 @@ public class FinalizeTimeActivity extends Activity {
 		final Calendar c = Calendar.getInstance();
 		mHourBetween = c.get(Calendar.HOUR_OF_DAY);
 		mMinuteBetween = c.get(Calendar.MINUTE);
-
+		
 		// Display the current date
 		updateDisplayBetween(mHourBetween, mMinuteBetween);
 	}
+	
+	@SuppressWarnings("deprecation")
+    public void onClickA(View v) {
+		showDialog(TIME_DIALOG_BETWEEN_ID);
+      }  
 
+	@SuppressWarnings("deprecation")
+    public void onClickB(View v) {
+		showDialog(TIME_DIALOG_AND_ID);
+      }  
+	
 	// Update the time String in the TextView
 	private void updateDisplayBetween(int hour, int min) {
 		String amPM;
