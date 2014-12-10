@@ -3,6 +3,7 @@ package com.cs329E.blitz;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,9 +27,11 @@ public class InvitationAdapter extends ArrayAdapter<Blitz>{
 			convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_invitation, parent, false);
 		}
 			
-
+		Typeface GillSans = Typeface.createFromAsset(convertView.getContext().getAssets(), "fonts/GillSans.ttf");
+		
 		TextView adminNameTV = (TextView) convertView.findViewById(R.id.admin_name);
 		adminNameTV.setText(blitz.getAdminName());
+		adminNameTV.setTypeface(GillSans);
 		
 		ImageView event_pic = (ImageView) convertView.findViewById(R.id.event_pic);
 		if (blitz.getEventType() == "restaurant")
@@ -41,6 +44,8 @@ public class InvitationAdapter extends ArrayAdapter<Blitz>{
 			event_pic.setImageResource(R.drawable.other_icon);
 		
 		TextView attendees = (TextView) convertView.findViewById(R.id.attendees);
+		attendees.setTypeface(GillSans);
+		
 		String s = "with ";
 		
 		ArrayList<Contact> attendeesList = blitz.getAttendees();

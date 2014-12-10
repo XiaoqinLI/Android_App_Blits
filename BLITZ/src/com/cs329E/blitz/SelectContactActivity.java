@@ -68,6 +68,8 @@ public class SelectContactActivity extends ListActivity {
 		
 		
 		final Button addFromContactButton = (Button) findViewById(R.id.contactbutton);		
+		addFromContactButton.setTypeface(GillSansLight);
+
 		addFromContactButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {				
 				Log.v(TAG, "User pressed the add from contact button");
@@ -75,15 +77,7 @@ public class SelectContactActivity extends ListActivity {
 				startActivityForResult(addFromContactIntent, PICK_CONTACT);			
 			}
 		});	
-		
-		final Button addFromFaceButton = (Button) findViewById(R.id.facebookbutton);		
-		addFromFaceButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {				
-				Log.v(TAG, "User pressed the add from facebook button");
-				
-			}
-		});	
-		
+
 		final Button nextButton = (Button) findViewById(R.id.next);
 		nextButton.setTypeface(GillSansLight);
 

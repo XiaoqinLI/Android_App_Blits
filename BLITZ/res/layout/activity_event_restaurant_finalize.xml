@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="90dp"
+    android:background="@drawable/invitation_bg"
+    tools:context="com.cs329E.blitz.EventInvitationActivity" >
+
+    <TextView
+        android:id="@+id/locationname"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"    
+        android:text="Mellow Mushroom"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+    
+	<TextView
+        android:id="@+id/responses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/locationname"
+		android:layout_marginBottom="5dp"
+        android:text="Responses: "
+        android:textColor="#000000"
+        android:textSize="18sp" />
+    
+	
+	<TextView
+        android:id="@+id/mostpopular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"    
+        android:layout_below="@+id/hlistview"
+        android:text="Most Popular Times:"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+	
+    <com.devsmart.android.ui.HorizontalListView
+        android:id="@+id/hlistview"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_below="@+id/responses"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="29dp"
+        android:background="@android:color/transparent" >
+    </com.devsmart.android.ui.HorizontalListView>
+	
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@+id/mostpopular"
+        android:paddingTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/contacts_background"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0sp" >
+
+    </ListView>
+        
+    <Button
+        android:id="@+id/finalize"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@android:id/list"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="#6495a6"
+        android:textColor="#ffffff"
+        android:text="Finalize" />
+
+
+    
+</RelativeLayout>

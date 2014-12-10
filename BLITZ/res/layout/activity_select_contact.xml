@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_margin="20dp"
-        android:layout_above="@+id/contactbutton"
+        android:layout_above="@+id/buttons"
         android:layout_below="@+id/who_to_blitz"
         android:layout_centerHorizontal="true"
         android:background="@drawable/contacts_background"
@@ -37,36 +37,36 @@
 
     </ListView>
 
-
-    <Button
-        android:id="@+id/contactbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/facebookbutton"
-        android:layout_alignBottom="@+id/facebookbutton"
-        android:layout_toRightOf="@+id/next"
-        android:text="Contact" />
-
-    <Button
-        android:id="@+id/facebookbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/next"
-        android:layout_alignLeft="@android:id/list"
-        android:layout_marginBottom="22dp"
-        android:layout_marginLeft="27dp"
-        android:text="Facebook" />
     
-	<Button
-        android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="#6495a6"
-        android:textColor="#ffffff"
-        android:text="Next" />
+	<LinearLayout
+	    android:id="@+id/buttons"
+		android:layout_height="wrap_content"
+ 		android:layout_width="wrap_content"
+ 		android:layout_marginBottom="10dp"
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentBottom="true">
+    
+	    <Button
+	        android:id="@+id/contactbutton"
+	        android:layout_width="120dp"
+	        android:layout_height="40dp"
+	        android:layout_marginRight="10dp"
+	        android:background="#6495a6"
+	        android:textColor="#ffffff"
+	        android:text="Add Contact" />
+
+	    
+		<Button
+	        android:id="@+id/next"
+	        android:layout_width="120dp"
+	        android:layout_height="40dp"
+	        android:layout_marginLeft="10dp"
+	        android:background="#6495a6"
+	        android:textColor="#ffffff"
+	        android:text="Next" />
+    
+    </LinearLayout>
+
+
 	
 </RelativeLayout>

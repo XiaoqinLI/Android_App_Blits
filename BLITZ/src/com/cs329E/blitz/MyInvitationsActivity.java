@@ -4,20 +4,25 @@ import java.util.ArrayList;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
 public class MyInvitationsActivity extends ListActivity {
 	
 	private final String TAG = "My Invitations Activity";
-	
+	private GestureDetector mGestureDetector;
+
 	InvitationAdapter adapter;
 	private static ArrayList<Blitz> arrayOfInvitations = new ArrayList<Blitz>();
 	
@@ -27,7 +32,24 @@ public class MyInvitationsActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_my_invitations);
+				
+		mGestureDetector = new GestureDetector(this,
+				new GestureDetector.SimpleOnGestureListener() {
+					@Override
+					public boolean onFling(MotionEvent e1, MotionEvent e2,
+							float velocityX, float velocityY) {
+						if (velocityX < -10.0f) {
+							Log.v(TAG, "User swiped left");
+							Intent invitationsIntent = new Intent(getBaseContext(), SelectEventActivity.class);
+							startActivity(invitationsIntent);
+							overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
+						}
+						return true;
+					}
+				});
 		
+
 		adapter = new InvitationAdapter(this, arrayOfInvitations);
 		final ListView invitationListView = getListView();
 		invitationListView.setAdapter(adapter);
@@ -47,6 +69,8 @@ public class MyInvitationsActivity extends ListActivity {
 		adapter.add(new Blitz(1, "Jim Halpert", "movie", contacts2));
 
 		ArrayList<Contact> contacts3 = new ArrayList<Contact>();
+		contacts3.add(new Contact(1, "Jim"));
+		contacts3.add(new Contact(2, "Dwight"));
 		adapter.add(new Blitz(1, "Michael Scott", "other", contacts3));
 		
 		ArrayList<Contact> contacts4 = new ArrayList<Contact>();
@@ -61,12 +85,30 @@ public class MyInvitationsActivity extends ListActivity {
 				Log.v(TAG, "Selected Blitz for RSVP");
 				
 				Intent intent = new Intent(getBaseContext(), EventInvitationActivity.class);
+				intent.putExtra("EXTRA_INVITATION_ID", Integer.toString(position));
 				startActivity(intent);				
 			
 				}
 		});
 		
+		// **** Development only: long-pressing will bring up creator time finalize activity
+		invitationListView.setOnItemLongClickListener(new OnItemLongClickListener() {
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1, final int idx, long id) {
+				
+				Intent intent = new Intent(getBaseContext(), EventInvitationActivity.class);
+				intent.putExtra("EXTRA_INVITATION_ID", Integer.toString(idx + 10));
+				startActivity(intent);	
+				
+				return true;
+			}
+
+		});
+		
+		Typeface GillSansLight = Typeface.createFromAsset(getAssets(), "fonts/GillSans-Light.ttf");
+		
 		Button backButton = (Button) findViewById(R.id.backbutton);		
+		backButton.setTypeface(GillSansLight);
+		
 		backButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -80,6 +122,11 @@ public class MyInvitationsActivity extends ListActivity {
 		
 	}
 
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		return mGestureDetector.onTouchEvent(event);
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

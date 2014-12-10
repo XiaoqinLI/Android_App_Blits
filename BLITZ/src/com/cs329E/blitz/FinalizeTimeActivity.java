@@ -25,8 +25,10 @@ public class FinalizeTimeActivity extends Activity {
 	private Button mPickTimeAnd;
 	private int mHourBetween;
 	private int mMinuteBetween;
+	private String betweenAMPM = "AM";
 	private int mHourAnd;
 	private int mMinuteAnd;
+	private String andAMPM = "AM";
 	
 	static final int TIME_DIALOG_BETWEEN_ID = 0;
 	static final int TIME_DIALOG_AND_ID = 1;
@@ -37,15 +39,17 @@ public class FinalizeTimeActivity extends Activity {
 		public void onTimeSet(TimePicker view, int hourOfDayBetween, int minuteBetween ) {
 			mHourBetween = hourOfDayBetween;
 			mMinuteBetween = minuteBetween;
-			updateDisplayBetween();
+			
+			updateDisplayBetween(mHourBetween, mMinuteBetween);
 		}
 	};
 	
 	private CustomTimePickerDialog.OnTimeSetListener mAndTimeSetListener = new CustomTimePickerDialog.OnTimeSetListener() {
-		public void onTimeSet(TimePicker view, int hourOfDay, int minute ) {
-			mHourAnd = hourOfDay;
-			mMinuteAnd = minute;
-			updateDisplayAnd();
+		public void onTimeSet(TimePicker view, int hourOfDayAnd, int minuteAnd ) {
+			mHourAnd = hourOfDayAnd;
+			mMinuteAnd = minuteAnd;
+			
+			updateDisplayAnd(mHourAnd, mMinuteAnd);
 		}
 	};
 	
@@ -96,18 +100,65 @@ public class FinalizeTimeActivity extends Activity {
 		mMinuteBetween = c.get(Calendar.MINUTE);
 
 		// Display the current date
-		updateDisplayBetween();
+		updateDisplayBetween(mHourBetween, mMinuteBetween);
 	}
 
 	// Update the time String in the TextView
-	private void updateDisplayBetween() {
-		mTimeDisplayBetween.setText(new StringBuilder().append(pad(mHourBetween)).append(":")
-				.append(pad(mMinuteBetween)));
+	private void updateDisplayBetween(int hour, int min) {
+		String amPM;
+		String time;
+		
+		if (hour > 12)
+		{
+			hour -= 12;
+			amPM = "PM";
+		}
+		else if (hour == 12)
+		{
+			amPM = "PM";
+		}
+		else if (hour == 0)
+		{
+			hour = 12;
+			amPM = "AM";
+		}
+		else
+		{
+			amPM = "AM";
+		}
+		
+		time = Integer.toString(hour) + ":" + pad(min) + " " + amPM;
+		
+		mTimeDisplayBetween.setText(time);
+		
 	}
 
-	private void updateDisplayAnd() {
-		mTimeDisplayAnd.setText(new StringBuilder().append(pad(mHourAnd)).append(":")
-				.append(pad(mHourAnd)));
+	private void updateDisplayAnd(int hour, int min) {
+		String amPM;
+		String time;
+		
+		if (hour > 12)
+		{
+			hour -= 12;
+			amPM = "PM";
+		}
+		else if (hour == 12)
+		{
+			amPM = "PM";
+		}
+		else if (hour == 0)
+		{
+			hour = 12;
+			amPM = "AM";
+		}
+		else
+		{
+			amPM = "AM";
+		}
+		
+		time = Integer.toString(hour) + ":" + pad(min) + " " + amPM;
+		
+		mTimeDisplayAnd.setText(time);
 	}
 	
 	// Prepends a "0" to 1-digit minutes 
@@ -125,7 +176,7 @@ public class FinalizeTimeActivity extends Activity {
 			return new CustomTimePickerDialog(this, mBetweenTimeSetListener, mHourBetween, mMinuteBetween,
 					false);
 		case TIME_DIALOG_AND_ID:
-			return new CustomTimePickerDialog(this, mAndTimeSetListener, mHourAnd, mHourAnd,
+			return new CustomTimePickerDialog(this, mAndTimeSetListener, mHourAnd, mMinuteAnd,
 					false);
 		}
 		return null;
