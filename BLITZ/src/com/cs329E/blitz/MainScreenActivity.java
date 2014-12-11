@@ -1,5 +1,6 @@
 package com.cs329E.blitz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -58,13 +59,22 @@ public class MainScreenActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
+		
 		setContentView(R.layout.activity_main_screen);
 				
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
 		
+        
+		Intent intent = getIntent();
+		String fragExtra = intent.getStringExtra("EXTRA_PAGE_NAME");
+		
+		if (fragExtra != null && fragExtra.equals("invitations"))
+		{
+			vpPager.setCurrentItem(1);
+		}
+        
     	// Attach the page change listener inside the activity
     	vpPager.setOnPageChangeListener(new OnPageChangeListener() {
 

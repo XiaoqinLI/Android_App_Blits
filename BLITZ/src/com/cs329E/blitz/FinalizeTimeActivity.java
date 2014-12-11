@@ -2,28 +2,31 @@ package com.cs329E.blitz;
 
 import java.util.Calendar;
 
+import com.cs329E.blitz.Fragments.MyInvitationsFragment;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 public class FinalizeTimeActivity extends Activity {
 	private static final String TAG = "Finalize Time Activity";
-	private LinearLayout layout;
+	private RelativeLayout layout;
 	private String eventName;
 
 	private TextView mTimeDisplayBetween;
 	private TextView mTimeDisplayAnd;
-	private Button mPickTimeBetween;
-	private Button mPickTimeAnd;
 	private int mHourBetween;
 	private int mMinuteBetween;
 	private String betweenAMPM = "AM";
@@ -60,7 +63,7 @@ public class FinalizeTimeActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		setContentView(R.layout.activity_finalize_time);
-		layout =(LinearLayout)findViewById(R.id.finalize_time_activity_bg);
+		layout = (RelativeLayout) findViewById(R.id.finalize_time_activity_bg);
 		Intent intent = getIntent();
 		eventName = intent.getStringExtra("EXTRA_EVENT_NAME");
 		if (eventName.equals("BAR")){
@@ -75,28 +78,44 @@ public class FinalizeTimeActivity extends Activity {
 		else if (eventName.equals("OTHER")){
 			layout.setBackgroundResource(R.drawable.blitzbg_events);
 		}
-				
+			
+		Typeface GillSansLight = Typeface.createFromAsset(getAssets(), "fonts/GillSans-Light.ttf");
+
 		// Capture UI elements
 		mTimeDisplayBetween = (TextView) findViewById(R.id.between_time_text);
-		mPickTimeBetween = (Button) findViewById(R.id.time_between_button);
 		mTimeDisplayAnd = (TextView) findViewById(R.id.and_time_text);
-		mPickTimeAnd = (Button) findViewById(R.id.time_and_button);
 
-		// Set an OnClickListener on the Change the Time Button
-		mPickTimeBetween.setOnClickListener(new View.OnClickListener() {
-			@SuppressWarnings("deprecation")
-			public void onClick(View v) {
-				showDialog(TIME_DIALOG_BETWEEN_ID);
+		Button rightNowBtn = (Button) findViewById(R.id.rightNowButton);
+		rightNowBtn.setTypeface(GillSansLight);
+
+		rightNowBtn.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {				
+				Log.v(TAG, "User pressed the next button");
+				Intent nextIntent = new Intent(FinalizeTimeActivity.this, MainScreenActivity.class);
+				nextIntent.putExtra("EXTRA_PAGE_NAME", "invitations");
+				startActivity(nextIntent);
 			}
-		});
+		});	
 		
-		mPickTimeAnd.setOnClickListener(new View.OnClickListener() {
-			@SuppressWarnings("deprecation")
-			public void onClick(View v) {
-				showDialog(TIME_DIALOG_AND_ID);
+		Button setTimeBtn = (Button) findViewById(R.id.setTimeButton);
+		setTimeBtn.setTypeface(GillSansLight);
+		setTimeBtn.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {				
+				Log.v(TAG, "User pressed the next button");
+				Intent nextIntent = new Intent(FinalizeTimeActivity.this, MainScreenActivity.class);
+				nextIntent.putExtra("EXTRA_PAGE_NAME", "invitations");
+				startActivity(nextIntent);
 			}
-		});
+		});	
+		
 
+		TextView mTextBetween = (TextView) findViewById(R.id.time_between);
+		TextView mTextAnd = (TextView) findViewById(R.id.time_and);
+		
+		mTextBetween.setTypeface(GillSansLight);
+		mTextAnd.setTypeface(GillSansLight);
+		
+		// Set an OnClickListener on the Change the Time Button
 		// Get the current time
 		final Calendar c = Calendar.getInstance();
 		mHourBetween = c.get(Calendar.HOUR_OF_DAY);
