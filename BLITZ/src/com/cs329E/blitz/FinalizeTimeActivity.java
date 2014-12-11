@@ -66,21 +66,43 @@ public class FinalizeTimeActivity extends Activity {
 		layout = (RelativeLayout) findViewById(R.id.finalize_time_activity_bg);
 		Intent intent = getIntent();
 		eventName = intent.getStringExtra("EXTRA_EVENT_NAME");
+		String locName = intent.getStringExtra("EXTRA_LOCATION_NAME");
+		
+		Typeface GillSansLight = Typeface.createFromAsset(getAssets(), "fonts/GillSans-Light.ttf");
+		Typeface GillSans = Typeface.createFromAsset(getAssets(), "fonts/GillSans.ttf");
+		Typeface GillSansBold = Typeface.createFromAsset(getAssets(), "fonts/GillSans-SemiBold.ttf");
+
+		
+		TextView whenTV = (TextView) findViewById(R.id.when_to_blitz);
+		TextView whereTV = (TextView) findViewById(R.id.locName);
+		
+		whenTV.setTypeface(GillSans);
+		whereTV.setTypeface(GillSansBold);
+
+		
 		if (eventName.equals("BAR")){
 			layout.setBackgroundResource(R.drawable.blitzbg_bars);
+			whenTV.setText("When do you want to go to");
+			whereTV.setText(locName + "?");
 		}
 		else if (eventName.equals("RESTAURANT")){
 			layout.setBackgroundResource(R.drawable.blitzbg_restaurants);
+			whenTV.setText("When do you want to eat at");
+			whereTV.setText(locName + "?");
 		}
 		else if (eventName.equals("MOVIE")){
 			layout.setBackgroundResource(R.drawable.blitzbg_movies);
+			whenTV.setText("When do you want to see");
+			whereTV.setText(locName + "?");
 		}
 		else if (eventName.equals("OTHER")){
 			layout.setBackgroundResource(R.drawable.blitzbg_events);
+			whenTV.setText("When do you want to attend");
+			whereTV.setText(locName + "?");
 		}
 			
-		Typeface GillSansLight = Typeface.createFromAsset(getAssets(), "fonts/GillSans-Light.ttf");
 
+		
 		// Capture UI elements
 		mTimeDisplayBetween = (TextView) findViewById(R.id.between_time_text);
 		mTimeDisplayAnd = (TextView) findViewById(R.id.and_time_text);

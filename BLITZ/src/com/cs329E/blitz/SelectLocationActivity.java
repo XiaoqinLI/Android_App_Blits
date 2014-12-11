@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,8 +29,10 @@ public class SelectLocationActivity extends Activity {
 	private RelativeLayout layout;
 	private String eventName;
 //	private int[] ids = {R.id.favourite1, R.id.favourite2, R.id.favourite3, R.id.favourite4, R.id.favourite5};
-	private TextView eventLabel, restaurantLabel;
+	private TextView eventLabel, locationLabel;
 	private AutoCompleteTextView autoCompletetextView;
+	
+	String locationName;
 
 	private static final String[] RESTAURANT = new String[] { "Mellow Mushroom", "Madam Mam's", 
 		"Qdoba Mexican Grill", "Noodles & Company", "Quizno's"};
@@ -61,31 +64,78 @@ public class SelectLocationActivity extends Activity {
 			setContentView(R.layout.activity_select_location_movie_bar);
 		}
 
-		layout =(RelativeLayout)findViewById(R.id.select_location_activity_bg);	
-		eventLabel = (TextView)findViewById(R.id.where_to_blitz);
-		restaurantLabel = (TextView)findViewById(R.id.where_to_blitz_rest);
+		if (eventName.equals("BAR") || eventName.equals("RESTAURANT") || eventName.equals("MOVIE")) {
+			Button searchButton = (Button) findViewById(R.id.searchingButton);
+			searchButton.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {				
+					Log.v(TAG, "User pressed the next button");
+					AutoCompleteTextView search = (AutoCompleteTextView) findViewById(R.id.autocomplete_items);
+					locationName = search.getText().toString();
+					Intent nextIntent = new Intent(SelectLocationActivity.this, FinalizeTimeActivity.class);
+					nextIntent.putExtra("EXTRA_EVENT_NAME", eventName);
+					nextIntent.putExtra("EXTRA_LOCATION_NAME", locationName);
+					startActivity(nextIntent);
+				}
+			});	
+			
+		}
+		
+		Typeface GillSans = Typeface.createFromAsset(getAssets(), "fonts/GillSans.ttf");
+		Typeface GillSansLight = Typeface.createFromAsset(getAssets(), "fonts/GillSans-Light.ttf");
 
+		layout =(RelativeLayout)findViewById(R.id.select_location_activity_bg);	
+		locationLabel = (TextView)findViewById(R.id.where_to_blitz);
+		locationLabel.setTypeface(GillSans);
+		
+		
+		Button nextButton = (Button) findViewById(R.id.next2);
+		nextButton.setTypeface(GillSansLight);
+		nextButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {				
+				Log.v(TAG, "User pressed the next button");
+				AutoCompleteTextView search = (AutoCompleteTextView) findViewById(R.id.autocomplete_items);
+				
+				if (eventName.equals("BAR") || eventName.equals("RESTAURANT") || eventName.equals("MOVIE"))
+					locationName = search.getText().toString();
+				else {
+					TextView eventName = (TextView) findViewById(R.id.eventName);
+					locationName = eventName.getText().toString();
+				}
+				
+				Intent nextIntent = new Intent(SelectLocationActivity.this, FinalizeTimeActivity.class);
+				nextIntent.putExtra("EXTRA_EVENT_NAME", eventName);
+				nextIntent.putExtra("EXTRA_LOCATION_NAME", locationName);
+				startActivity(nextIntent);
+			}
+		});	
+		
+		
+		
 		if (eventName.equals("BAR")){
 			layout.setBackgroundResource(R.drawable.blitzbg_bars);
-			eventLabel.setText("where do you want to go?");
-			autoCompletetextView = (AutoCompleteTextView) findViewById(R.id.autocomplete_items);
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-					R.layout.list_item, BAR);
-			autoCompletetextView.setAdapter(adapter);
-			autoCompletetextView.setOnItemClickListener(new OnItemClickListener() {
-				// Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-						long arg3) {
-					Toast.makeText(getApplicationContext(), "The winner is:" + arg0.getAdapter().getItem(arg2), Toast.LENGTH_SHORT).show();
-
-				}
-			});
+			locationLabel.setText("Where do you want to go?");
+			
+			ArrayList<Location> locations = new ArrayList<Location>();
+			AutoCompleteTextView txtLocations;
+			LocationAdapter adapter;
+			
+			txtLocations = (AutoCompleteTextView) findViewById(R.id.autocomplete_items);
+			locations.add(new Location(1, "Crown & Anchor Pub"));
+			locations.add(new Location(2, "Posse East"));
+			locations.add(new Location(3, "Cain & Abel's"));
+			locations.add(new Location(4, "Spider House Cafe"));
+			locations.add(new Location(5, "The Hole in the Wall"));
+			
+			adapter = new LocationAdapter(this, locations);
+			txtLocations.setThreshold(1);
+			txtLocations.setAdapter(adapter);
+								
+			
 		}
 		else if (eventName.equals("RESTAURANT")){
 			layout.setBackgroundResource(R.drawable.blitzbg_restaurants);
-			restaurantLabel.setText("where do you want to go?");
-
+			locationLabel.setText("Where do you want to go?");
+			
 			ArrayList<Location> locations = new ArrayList<Location>();
 			AutoCompleteTextView txtLocations;
 			LocationAdapter adapter;
@@ -101,128 +151,73 @@ public class SelectLocationActivity extends Activity {
 			locations.add(new Location(8, "Whataburger"));
 			
 			adapter = new LocationAdapter(this, locations);
-			txtLocations.setThreshold(0);
+			txtLocations.setThreshold(2);
 			txtLocations.setAdapter(adapter);
+		
+
+			TextView yourFriendsTV = (TextView)findViewById(R.id.your_friend_like_text);
+			yourFriendsTV.setTypeface(GillSans);
 			
-
-			txtLocations.setOnItemClickListener(new OnItemClickListener() {
-				// Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-						long arg3) {
-					Toast.makeText(getApplicationContext(), "Selected: " + arg0.getAdapter().getItem(arg2), Toast.LENGTH_SHORT).show();
-
-				}
-			});
-
 			
 			ArrayList<Location> favorites = new ArrayList<Location>();
-			HorizontalListView hListView = (HorizontalListView) findViewById(R.id.hlistview);
+			final HorizontalListView hListView = (HorizontalListView) findViewById(R.id.hlistview);
 			FavoritesAdapter hlvAdapter;
 			
-			favorites.add(new Location(1, "Whataburger", getResources().getDrawable(R.drawable.whataburger)));
+			favorites.add(new Location(1, "Kerbey Lane Cafe", getResources().getDrawable(R.drawable.kerbey)));
+			favorites.add(new Location(1, "Mellow Mushroom", getResources().getDrawable(R.drawable.mellowmushroom)));
 			favorites.add(new Location(1, "Torchy's Tacos", getResources().getDrawable(R.drawable.canes)));
+			favorites.add(new Location(1, "Whataburger", getResources().getDrawable(R.drawable.whataburger)));
 			favorites.add(new Location(1, "Raising Cane's", getResources().getDrawable(R.drawable.torchys)));
 			
 			hlvAdapter = new FavoritesAdapter(this, favorites);
 			hListView.setAdapter(hlvAdapter);
 			
-			
-			Button nextButton = (Button) findViewById(R.id.next2);
-			nextButton.setOnClickListener(new View.OnClickListener() {
-				public void onClick(View v) {				
-					Log.v(TAG, "User pressed the next button");
+			hListView.setOnItemClickListener(new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+					Location selectedLocation = (Location) hListView.getItemAtPosition(arg2);
+					locationName = selectedLocation.getLocationName();
+					
 					Intent nextIntent = new Intent(SelectLocationActivity.this, FinalizeTimeActivity.class);
 					nextIntent.putExtra("EXTRA_EVENT_NAME", eventName);
+					nextIntent.putExtra("EXTRA_LOCATION_NAME", locationName);
 					startActivity(nextIntent);
 				}
-			});	
+			});
+			
+		
 			
 			
 		}
 		else if (eventName.equals("MOVIE")){
+
 			layout.setBackgroundResource(R.drawable.blitzbg_movies);
-			eventLabel.setText("what do you want to see?");
-			autoCompletetextView = (AutoCompleteTextView) findViewById(R.id.autocomplete_items);
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-					R.layout.list_item, MOVIE);
-			autoCompletetextView.setAdapter(adapter);
-			autoCompletetextView.setOnItemClickListener(new OnItemClickListener() {
-				// Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-						long arg3) {
-					Toast.makeText(getApplicationContext(), "The winner is:" + arg0.getAdapter().getItem(arg2), Toast.LENGTH_SHORT).show();
-
-				}
-			});
+			locationLabel.setText("What do you want to see?");
+			
+			ArrayList<Location> locations = new ArrayList<Location>();
+			AutoCompleteTextView txtLocations;
+			LocationAdapter adapter;
+			
+			txtLocations = (AutoCompleteTextView) findViewById(R.id.autocomplete_items);
+			locations.add(new Location(1, "Forrest Gump"));
+			locations.add(new Location(2, "The Princess Bride"));
+			locations.add(new Location(3, "Harry Potter and the Deathly Hallows Part 1"));
+			locations.add(new Location(4, "The Hitchhiker's Guide to the Galaxy"));
+			locations.add(new Location(5, "Frozen"));
+			
+			adapter = new LocationAdapter(this, locations);
+			txtLocations.setThreshold(1);
+			txtLocations.setAdapter(adapter);
+						
 		}
-		else if (eventName.equals("OTHER")){
+		
+		else {
 			layout.setBackgroundResource(R.drawable.blitzbg_events);
-			eventLabel.setText("what do you want to do?");
+			locationLabel.setText("What do you want to do?");
+			
 		}
-
-		//		if (eventName.equals("RESTAURANT")){
-
-		/*
-			// ListView method: vertical layout only
-			// Create the adapter to convert the array to views
-			FriendFavouritesAdapter adapter = new FriendFavouritesAdapter(this, arrayOfPlayers);
-			// Attach the adapter to a ListView
-			ListView FriendFavouritesListView = getListView();
-			FriendFavouritesListView.setAdapter(adapter);
-			adapter.clear();
-			adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_1)));
-			adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_2)));
-			adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_3)));
-			adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_4)));
-			adapter.add(new FriendFavourites(getResources().getDrawable(R.drawable.sample_6)));
-
-			FriendFavouritesListView.setOnItemClickListener(new OnItemClickListener() {
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
-					Log.v(TAG, "Hit on a favourite place, go to set time");
-					Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
-					selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
-					startActivity(selectLocationIntent);					
-				}
-			});
-			;
-
-		 */
-		// advanced method, using twowayview package but
-		// not working for images, need a customized adapter maybe
-		//		items.add(getResources().getDrawable(R.drawable.sample_1));
-		//		items.add(getResources().getDrawable(R.drawable.sample_2));
-		//		items.add(getResources().getDrawable(R.drawable.sample_3));
-		//		items.add(getResources().getDrawable(R.drawable.sample_4));
-		//		items.add(getResources().getDrawable(R.drawable.sample_5));
-		//		items.add(getResources().getDrawable(R.drawable.sample_6));
-		//		items.add(getResources().getDrawable(R.drawable.sample_7));
-		//		ArrayAdapter<Drawable> aItems = new ArrayAdapter<Drawable>(this, R.layout.simple_list_item_1, items);
-
-		//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_1));
-		//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_2));
-		//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_3));
-		//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_4));
-		//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_5));
-		//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_6));
-		//		items.add(BitmapFactory.decodeResource(getResources(), R.drawable.sample_7));
-		//		ArrayAdapter<Bitmap> aItems = new ArrayAdapter<Bitmap>(this, R.layout.simple_list_item_1, items);
-
-		//		TwoWayView lvTest = (TwoWayView) findViewById(R.id.lvItems);
-		//		lvTest.setAdapter(aItems);
-		//				
-		//		lvTest.setOnItemClickListener(new OnItemClickListener() {
-		//			public void onItemClick(AdapterView<?> parent, View view,
-		//					int position, long id) {
-		//				Log.v(TAG, "Hit on a favourite place, go to set time");
-		//				Intent selectLocationIntent = new Intent(getBaseContext(), FinalizeTimeActivity.class);
-		//				selectLocationIntent.putExtra("EXTRA_EVENT_NAME", eventName);
-		//				startActivity(selectLocationIntent);					
-		//			}
-		//		});
-		//		}			
+		
+		
 	}
 
 	@Override

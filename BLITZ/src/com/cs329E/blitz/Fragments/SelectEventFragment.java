@@ -4,6 +4,7 @@ import com.cs329E.blitz.R;
 import com.cs329E.blitz.SelectContactActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -44,6 +45,9 @@ public class SelectEventFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_select_event, container, false);
 
+		TextView send = (TextView) view.findViewById(R.id.textView1);
+        Typeface Gotham = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Gotham-Medium.otf");
+		send.setTypeface(Gotham);
         
 		ImageView movieView = (ImageView) view.findViewById(R.id.option1_img);
 		ImageView restaurantView = (ImageView) view.findViewById(R.id.option2_img);

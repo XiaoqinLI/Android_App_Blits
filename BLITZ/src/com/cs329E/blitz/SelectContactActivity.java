@@ -15,10 +15,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class SelectContactActivity extends ListActivity {
 	
@@ -64,10 +67,21 @@ public class SelectContactActivity extends ListActivity {
 		contactListView.setAdapter(adapter);
 		
 		adapter.clear();
-		adapter.add(new Contact(1, "Michael Scott"));
-		adapter.add(new Contact(1, "Dwight Schrute"));
+		adapter.add(new Contact(1, "Andy Bernard"));
+		adapter.add(new Contact(1, "Pam Beesly"));
+		adapter.add(new Contact(1, "Toby Flenderson"));
 		adapter.add(new Contact(1, "Jim Halpert"));
+		adapter.add(new Contact(1, "Ryan Howard"));
+		adapter.add(new Contact(1, "Kelly Kapoor"));
+		adapter.add(new Contact(1, "Dwight Schrute"));
+		adapter.add(new Contact(1, "Michael Scott"));
 		
+		contactListView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				CheckBox checkbox = (CheckBox) view.findViewById(R.id.checkbox);
+			    checkbox.setChecked(!checkbox.isChecked());
+				}
+		});
 		
 		
 		final Button addFromContactButton = (Button) findViewById(R.id.contactbutton);		
